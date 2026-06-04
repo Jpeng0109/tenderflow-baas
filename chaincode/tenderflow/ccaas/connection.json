@@ -1,0 +1,5 @@
+{
+  "address": "tenderflow_ccaas:9999",
+  "dial_timeout": "15s",
+  "tls_required": false
+}

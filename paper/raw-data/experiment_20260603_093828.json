@@ -1,0 +1,470 @@
+{
+  "experiment_id": "mainnet_20260603_093828",
+  "project": "Ma'anshan Yangtze River Bridge TENDERFLOW",
+  "simulation": {
+    "transactions": [
+      {
+        "ok": false,
+        "latency_ms": 392.2,
+        "function": "CreateTender",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "project_name": "Ma'anshan Yangtze River Bridge",
+          "rfp_cid": "ipfs://QmMaanshanRFP2024Bridge3248mSteelTruss",
+          "bid_bond_pct": 2.0,
+          "deadline": "2024-12-31T23:59:59Z"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 378.84,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-A",
+          "bid_hash": "sha256:Bidder-A-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 332.43,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-B",
+          "bid_hash": "sha256:Bidder-B-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 335.82,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-C",
+          "bid_hash": "sha256:Bidder-C-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 398.23,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-D",
+          "bid_hash": "sha256:Bidder-D-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 396.38,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-E",
+          "bid_hash": "sha256:Bidder-E-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 317.96,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-F",
+          "bid_hash": "sha256:Bidder-F-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 329.54,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-G",
+          "bid_hash": "sha256:Bidder-G-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 361.4,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-H",
+          "bid_hash": "sha256:Bidder-H-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 373.15,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-A",
+          "0.95"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 340.11,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-B",
+          "0.95"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 378.66,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-C",
+          "0.78"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 343.07,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-D",
+          "0.82"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 330.03,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-E",
+          "0.8"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 356.31,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-F",
+          "0.88"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 315.13,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-G",
+          "0.76"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 450.29,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-H",
+          "0.74"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 390.43,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-B",
+          "file_cid": "ipfs://QmWRONGHASH_breach_simulation"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 345.19,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-A",
+          "file_cid": "sha256:Bidder-A-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 1295.2,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-C",
+          "file_cid": "sha256:Bidder-C-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 636.91,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-D",
+          "file_cid": "sha256:Bidder-D-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 606.58,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-E",
+          "file_cid": "sha256:Bidder-E-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 516.66,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-F",
+          "file_cid": "sha256:Bidder-F-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 344.39,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-G",
+          "file_cid": "sha256:Bidder-G-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 430.05,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-H",
+          "file_cid": "sha256:Bidder-H-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": false,
+        "latency_ms": 542.29,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 317.81,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 367.86,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 410.73,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 376.07,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 349.2,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 322.16,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 368.84,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 333.19,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 297.32,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 337.86,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 343.08,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      }
+    ],
+    "block_height_before": 1,
+    "block_height_after": 1,
+    "blocks_produced": 0,
+    "reputations": {
+      "Bidder-A": "Error: endorsement failure during query. response: status:500 message:\"make sure the chaincode tenderflow has been successfully defined on channel fx-bridge-channel and try again: chaincode tenderflow not found\"",
+      "Bidder-B": "Error: endorsement failure during query. response: status:500 message:\"make sure the chaincode tenderflow has been successfully defined on channel fx-bridge-channel and try again: chaincode tenderflow not found\"",
+      "Bidder-C": "Error: endorsement failure during query. response: status:500 message:\"make sure the chaincode tenderflow has been successfully defined on channel fx-bridge-channel and try again: chaincode tenderflow not found\"",
+      "Bidder-D": "Error: endorsement failure during query. response: status:500 message:\"make sure the chaincode tenderflow has been successfully defined on channel fx-bridge-channel and try again: chaincode tenderflow not found\"",
+      "Bidder-E": "Error: endorsement failure during query. response: status:500 message:\"make sure the chaincode tenderflow has been successfully defined on channel fx-bridge-channel and try again: chaincode tenderflow not found\"",
+      "Bidder-F": "Error: endorsement failure during query. response: status:500 message:\"make sure the chaincode tenderflow has been successfully defined on channel fx-bridge-channel and try again: chaincode tenderflow not found\"",
+      "Bidder-G": "Error: endorsement failure during query. response: status:500 message:\"make sure the chaincode tenderflow has been successfully defined on channel fx-bridge-channel and try again: chaincode tenderflow not found\"",
+      "Bidder-H": "Error: endorsement failure during query. response: status:500 message:\"make sure the chaincode tenderflow has been successfully defined on channel fx-bridge-channel and try again: chaincode tenderflow not found\""
+    }
+  },
+  "benchmark": {
+    "invoke_count": 30,
+    "elapsed_sec": 13.218,
+    "tps": 2.27,
+    "blocks_before": 1,
+    "blocks_after": 1,
+    "latency_ms": {
+      "min": 292.0,
+      "max": 453.49,
+      "avg": 331.35,
+      "p95": 376.01
+    },
+    "latencies_raw": [
+      347.4,
+      359.96,
+      376.01,
+      303.82,
+      305.84,
+      304.68,
+      315.06,
+      309.6,
+      321.83,
+      299.57,
+      304.08,
+      296.04,
+      337.8,
+      319.7,
+      350.1,
+      330.52,
+      300.33,
+      323.2,
+      292.0,
+      299.84,
+      357.52,
+      453.49,
+      344.72,
+      353.06,
+      344.29,
+      394.68,
+      350.17,
+      323.63,
+      324.52,
+      297.05
+    ]
+  },
+  "network": {
+    "timestamp_utc": "2026-06-03T09:39:27.168273+00:00",
+    "channel_id": "fx-bridge-channel",
+    "orderer_count": 5,
+    "peer_count": 9,
+    "orderers": [
+      "orderer1.clearing-raft.org",
+      "orderer3.clearing-raft.org",
+      "orderer4.clearing-raft.org",
+      "orderer5.clearing-raft.org",
+      "orderer2.clearing-raft.org"
+    ],
+    "peers": [
+      "peer1.centralbank.gov",
+      "peer1.liquidity-bankA.com",
+      "peer0.liquidity-bankA.com",
+      "peer2.centralbank.gov",
+      "peer0.centralbank.gov",
+      "peer2.liquidity-bankA.com",
+      "peer2.liquidity-bankB.com",
+      "peer0.liquidity-bankB.com",
+      "peer1.liquidity-bankB.com"
+    ],
+    "infrastructure_nodes": 14,
+    "block_height": 1,
+    "fabric_version": "2.5.12",
+    "state_database": "CouchDB",
+    "consensus": "etcd/Raft (5 orderers)",
+    "explorer_api": {
+      "latestBlockHeight": 12847,
+      "totalQuotationTxs": 96133,
+      "totalTenderTxs": 96133,
+      "activeNodes": 0,
+      "totalInfrastructureNodes": 14,
+      "activeNodesLabel": "0/14 Live",
+      "averageBlockTimeSec": 2.1,
+      "channelId": "tenderflow-channel",
+      "ordererCluster": 5,
+      "peerOrgs": 3,
+      "dataSource": "mock"
+    }
+  },
+  "scenario_analysis": {
+    "scenario1_static_winner": "Bidder-A",
+    "scenario1_static_verified_rep": 0.95,
+    "scenario2_dynamic_winner": "Bidder-A",
+    "scenario2_dynamic_total_score": null,
+    "bidder_b_total_after_breach": null,
+    "bidder_b_behavioral_after_breach": null,
+    "bidder_b_filtered": false,
+    "all_scores": {}
+  }
+}

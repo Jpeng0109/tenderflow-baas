@@ -1,0 +1,16 @@
+{
+  "name": "financial-bridge-baas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Financial Bridge — 3 integrated components",
+  "scripts": {
+    "bootstrap": "bash scripts/network-bootstrap.sh",
+    "bootstrap:win": "powershell -File scripts/bootstrap.ps1",
+    "verify": "bash scripts/verify-network.sh",
+    "platform": "bash scripts/start-platform.sh",
+    "platform:win": "powershell -File scripts/start-platform.ps1",
+    "backend": "npm run dev --prefix backend",
+    "console": "npm run dev --prefix console",
+    "explorer": "npm run dev --prefix explorer"
+  }
+}

@@ -1,0 +1,68 @@
+# TENDERFLOW — Cryptogen Topology (Ma'anshan Bridge Tendering Experiment)
+# 14 distributed infrastructure nodes: 5 RAFT orderers + 9 peers (3 orgs × 3)
+# Channel: tenderflow-channel | State DB: CouchDB
+#
+# Org mapping for paper Section 5.2:
+#   centralbank.gov      → Provincial Transport Dept. (Regulator)
+#   liquidity-bankA.com  → Tier-1 Construction Consortium (8 bidders)
+#   liquidity-bankB.com  → Audit & Financial Supervision
+
+OrdererOrgs:
+  - Name: ClearingRaft
+    Domain: clearing-raft.org
+    EnableNodeOUs: true
+    Specs:
+      - Hostname: orderer1
+        SANS:
+          - localhost
+          - orderer1.clearing-raft.org
+      - Hostname: orderer2
+        SANS:
+          - localhost
+          - orderer2.clearing-raft.org
+      - Hostname: orderer3
+        SANS:
+          - localhost
+          - orderer3.clearing-raft.org
+      - Hostname: orderer4
+        SANS:
+          - localhost
+          - orderer4.clearing-raft.org
+      - Hostname: orderer5
+        SANS:
+          - localhost
+          - orderer5.clearing-raft.org
+
+PeerOrgs:
+  # Org 1 — Provincial Transport Dept. / Regulator (监管方)
+  - Name: CentralBank
+    Domain: centralbank.gov
+    EnableNodeOUs: true
+    Template:
+      Count: 3
+      SANS:
+        - localhost
+    Users:
+      Count: 2
+
+  # Org 2 — Tier-1 Construction Consortium (一级施工投标方)
+  - Name: LiquidityBankA
+    Domain: liquidity-bankA.com
+    EnableNodeOUs: true
+    Template:
+      Count: 3
+      SANS:
+        - localhost
+    Users:
+      Count: 2
+
+  # Org 3 — Audit & Financial Supervision (审计与金融机构)
+  - Name: LiquidityBankB
+    Domain: liquidity-bankB.com
+    EnableNodeOUs: true
+    Template:
+      Count: 3
+      SANS:
+        - localhost
+    Users:
+      Count: 2

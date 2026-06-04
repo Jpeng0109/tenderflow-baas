@@ -1,0 +1,223 @@
+# Financial Bridge BaaS — Channel & Consortium Configuration
+# Transnational FX Quotation, Matching & Settlement (跨境金融桥)
+# Channel ID: fx-bridge-channel | Consensus: etcd/Raft (5 orderers)
+
+---
+Organizations:
+  - &OrdererOrg
+    Name: ClearingRaftMSP
+    ID: ClearingRaftMSP
+    MSPDir: ../organizations/ordererOrganizations/clearing-raft.org/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('ClearingRaftMSP.member')"
+      Writers:
+        Type: Signature
+        Rule: "OR('ClearingRaftMSP.member')"
+      Admins:
+        Type: Signature
+        Rule: "OR('ClearingRaftMSP.admin')"
+    OrdererEndpoints:
+      - orderer1.clearing-raft.org:7050
+      - orderer2.clearing-raft.org:8050
+      - orderer3.clearing-raft.org:9050
+      - orderer4.clearing-raft.org:10050
+      - orderer5.clearing-raft.org:11050
+
+  - &CentralBank
+    Name: CentralBankMSP
+    ID: CentralBankMSP
+    MSPDir: ../organizations/peerOrganizations/centralbank.gov/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('CentralBankMSP.admin', 'CentralBankMSP.peer', 'CentralBankMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('CentralBankMSP.admin', 'CentralBankMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('CentralBankMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('CentralBankMSP.peer', 'CentralBankMSP.client')"
+    AnchorPeers:
+      - Host: peer0.centralbank.gov
+        Port: 7051
+
+  - &LiquidityBankA
+    Name: LiquidityBankAMSP
+    ID: LiquidityBankAMSP
+    MSPDir: ../organizations/peerOrganizations/liquidity-bankA.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('LiquidityBankAMSP.admin', 'LiquidityBankAMSP.peer', 'LiquidityBankAMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('LiquidityBankAMSP.admin', 'LiquidityBankAMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('LiquidityBankAMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('LiquidityBankAMSP.peer', 'LiquidityBankAMSP.client')"
+    AnchorPeers:
+      - Host: peer0.liquidity-bankA.com
+        Port: 9051
+
+  - &LiquidityBankB
+    Name: LiquidityBankBMSP
+    ID: LiquidityBankBMSP
+    MSPDir: ../organizations/peerOrganizations/liquidity-bankB.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('LiquidityBankBMSP.admin', 'LiquidityBankBMSP.peer', 'LiquidityBankBMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('LiquidityBankBMSP.admin', 'LiquidityBankBMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('LiquidityBankBMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('LiquidityBankBMSP.peer', 'LiquidityBankBMSP.client')"
+    AnchorPeers:
+      - Host: peer0.liquidity-bankB.com
+        Port: 11051
+
+Capabilities:
+  Channel: &ChannelCapabilities
+    V2_0: true
+  Orderer: &OrdererCapabilities
+    V2_0: true
+  Application: &ApplicationCapabilities
+    V2_5: true
+
+Application: &ApplicationDefaults
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    LifecycleEndorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+    Endorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+  Capabilities:
+    <<: *ApplicationCapabilities
+
+Orderer: &OrdererDefaults
+  OrdererType: etcdraft
+  Addresses:
+    - orderer1.clearing-raft.org:7050
+    - orderer2.clearing-raft.org:8050
+    - orderer3.clearing-raft.org:9050
+    - orderer4.clearing-raft.org:10050
+    - orderer5.clearing-raft.org:11050
+  BatchTimeout: 2s
+  BatchSize:
+    MaxMessageCount: 10
+    AbsoluteMaxBytes: 99 MB
+    PreferredMaxBytes: 512 KB
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    BlockValidation:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+  Capabilities:
+    <<: *OrdererCapabilities
+  EtcdRaft:
+    Consenters:
+      - Host: orderer1.clearing-raft.org
+        Port: 7050
+        ClientTLSCert: ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer1.clearing-raft.org/tls/server.crt
+        ServerTLSCert: ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer1.clearing-raft.org/tls/server.crt
+      - Host: orderer2.clearing-raft.org
+        Port: 8050
+        ClientTLSCert: ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer2.clearing-raft.org/tls/server.crt
+        ServerTLSCert: ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer2.clearing-raft.org/tls/server.crt
+      - Host: orderer3.clearing-raft.org
+        Port: 9050
+        ClientTLSCert: ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer3.clearing-raft.org/tls/server.crt
+        ServerTLSCert: ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer3.clearing-raft.org/tls/server.crt
+      - Host: orderer4.clearing-raft.org
+        Port: 10050
+        ClientTLSCert: ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer4.clearing-raft.org/tls/server.crt
+        ServerTLSCert: ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer4.clearing-raft.org/tls/server.crt
+      - Host: orderer5.clearing-raft.org
+        Port: 11050
+        ClientTLSCert: ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer5.clearing-raft.org/tls/server.crt
+        ServerTLSCert: ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer5.clearing-raft.org/tls/server.crt
+    Options:
+      TickInterval: 500ms
+      ElectionTick: 10
+      HeartbeatTick: 1
+      MaxInflightBlocks: 5
+      SnapshotIntervalSize: 16 MB
+
+Channel: &ChannelDefaults
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+  Capabilities:
+    <<: *ChannelCapabilities
+
+Profiles:
+  FxBridgeGenesis:
+    <<: *ChannelDefaults
+    Orderer:
+      <<: *OrdererDefaults
+      Organizations:
+        - *OrdererOrg
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+        - *CentralBank
+        - *LiquidityBankA
+        - *LiquidityBankB
+    Consortiums:
+      FxBridgeConsortium:
+        Organizations:
+          - *CentralBank
+          - *LiquidityBankA
+          - *LiquidityBankB
+
+  FxBridgeChannel:
+    <<: *ChannelDefaults
+    Orderer:
+      <<: *OrdererDefaults
+      Organizations:
+        - *OrdererOrg
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+        - *CentralBank
+        - *LiquidityBankA
+        - *LiquidityBankB

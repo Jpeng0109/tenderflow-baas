@@ -1,0 +1,557 @@
+﻿# Financial Bridge BaaS 鈥?14-node Hyperledger Fabric cluster + platform services
+# 5 RAFT orderers (clearing-raft.org) + 9 peers (3 orgs 脳 3) | CouchDB state
+# Channel: fx-bridge-channel
+
+x-fabric-orderer-env: &fabric-orderer-env
+  FABRIC_LOGGING_SPEC: INFO
+  ORDERER_GENERAL_LISTENADDRESS: 0.0.0.0
+  ORDERER_GENERAL_BOOTSTRAPMETHOD: none
+  ORDERER_CHANNELPARTICIPATION_ENABLED: "true"
+  ORDERER_ADMIN_LISTENADDRESS: 0.0.0.0:7053
+  ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE: /var/hyperledger/orderer/tls/server.crt
+  ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY: /var/hyperledger/orderer/tls/server.key
+  ORDERER_GENERAL_CLUSTER_ROOTCAS: /var/hyperledger/orderer/tls/ca.crt
+  ORDERER_GENERAL_TLS_ENABLED: "true"
+  ORDERER_GENERAL_TLS_CERTIFICATE: /var/hyperledger/orderer/tls/server.crt
+  ORDERER_GENERAL_TLS_PRIVATEKEY: /var/hyperledger/orderer/tls/server.key
+  ORDERER_GENERAL_TLS_ROOTCAS: /var/hyperledger/orderer/tls/ca.crt
+  ORDERER_GENERAL_LOCALMSPID: ClearingRaftMSP
+  ORDERER_GENERAL_LOCALMSPDIR: /var/hyperledger/orderer/msp
+  ORDERER_GENERAL_LEDGERTYPE: file
+  ORDERER_OPERATIONS_LISTENADDRESS: 0.0.0.0:8443
+  ORDERER_METRICS_PROVIDER: prometheus
+
+x-fabric-peer-env: &fabric-peer-env
+  FABRIC_LOGGING_SPEC: INFO
+  CORE_PEER_TLS_ENABLED: "true"
+  CORE_PEER_GOSSIP_USELEADERELECTION: "true"
+  CORE_PEER_GOSSIP_ORGLEADER: "false"
+  CORE_PEER_PROFILE_ENABLED: "false"
+  CORE_PEER_CHAINCODE_BUILDER: hyperledger/fabric-ccenv:${FABRIC_VERSION}
+  CORE_PEER_CHAINCODE_LAUNCHER: hyperledger/fabric-baseos:${FABRIC_VERSION}
+  CORE_VM_ENDPOINT: unix:///host/var/run/docker.sock
+  CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE: fx-bridge_fx_bridge
+  CORE_LEDGER_STATE_STATEDATABASE: CouchDB
+  CORE_OPERATIONS_LISTENADDRESS: 0.0.0.0:9444
+  CORE_METRICS_PROVIDER: prometheus
+  CORE_CHAINCODE_EXECUTETIMEOUT: 300s
+
+x-couchdb-env: &couchdb-env
+  COUCHDB_USER: admin
+  COUCHDB_PASSWORD: fxbridge_couch_secret
+
+networks:
+  fx_bridge:
+    name: fx-bridge_fx_bridge
+    driver: bridge
+
+services:
+  # 鈹€鈹€鈹€ RAFT ORDERER CLUSTER (5) 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  orderer1.clearing-raft.org:
+    image: hyperledger/fabric-orderer:${FABRIC_VERSION}
+    container_name: orderer1.clearing-raft.org
+    environment:
+      <<: *fabric-orderer-env
+      ORDERER_GENERAL_LISTENPORT: 7050
+      ORDERER_GENERAL_LOCALMSPID: ClearingRaftMSP
+    volumes:
+      - ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer1.clearing-raft.org:/var/hyperledger/orderer
+    ports:
+      - "7050:7050"
+      - "8443:8443"
+    networks: [fx_bridge]
+
+  orderer2.clearing-raft.org:
+    image: hyperledger/fabric-orderer:${FABRIC_VERSION}
+    container_name: orderer2.clearing-raft.org
+    environment:
+      <<: *fabric-orderer-env
+      ORDERER_GENERAL_LISTENPORT: 8050
+    volumes:
+      - ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer2.clearing-raft.org:/var/hyperledger/orderer
+    ports:
+      - "8050:8050"
+      - "8444:8443"
+    networks: [fx_bridge]
+
+  orderer3.clearing-raft.org:
+    image: hyperledger/fabric-orderer:${FABRIC_VERSION}
+    container_name: orderer3.clearing-raft.org
+    environment:
+      <<: *fabric-orderer-env
+      ORDERER_GENERAL_LISTENPORT: 9050
+    volumes:
+      - ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer3.clearing-raft.org:/var/hyperledger/orderer
+    ports:
+      - "9050:9050"
+      - "8445:8443"
+    networks: [fx_bridge]
+
+  orderer4.clearing-raft.org:
+    image: hyperledger/fabric-orderer:${FABRIC_VERSION}
+    container_name: orderer4.clearing-raft.org
+    environment:
+      <<: *fabric-orderer-env
+      ORDERER_GENERAL_LISTENPORT: 10050
+    volumes:
+      - ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer4.clearing-raft.org:/var/hyperledger/orderer
+    ports:
+      - "10050:10050"
+      - "8446:8443"
+    networks: [fx_bridge]
+
+  orderer5.clearing-raft.org:
+    image: hyperledger/fabric-orderer:${FABRIC_VERSION}
+    container_name: orderer5.clearing-raft.org
+    environment:
+      <<: *fabric-orderer-env
+      ORDERER_GENERAL_LISTENPORT: 11050
+    volumes:
+      - ../organizations/ordererOrganizations/clearing-raft.org/orderers/orderer5.clearing-raft.org:/var/hyperledger/orderer
+    ports:
+      - "11050:11050"
+      - "8447:8443"
+    networks: [fx_bridge]
+
+  # 鈹€鈹€鈹€ ORG1: centralbank.gov (3 peers + CouchDB) 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  couchdb0.centralbank.gov:
+    image: couchdb:${COUCHDB_VERSION}
+    container_name: couchdb0.centralbank.gov
+    environment:
+      <<: *couchdb-env
+    ports: ["5984:5984"]
+    networks: [fx_bridge]
+
+  peer0.centralbank.gov:
+    image: hyperledger/fabric-peer:${FABRIC_VERSION}
+    container_name: peer0.centralbank.gov
+    depends_on: [couchdb0.centralbank.gov]
+    environment:
+      <<: *fabric-peer-env
+      CORE_PEER_ID: peer0.centralbank.gov
+      CORE_PEER_ADDRESS: peer0.centralbank.gov:7051
+      CORE_PEER_GOSSIP_EXTERNALENDPOINT: peer0.centralbank.gov:7051
+      CORE_PEER_LISTENADDRESS: 0.0.0.0:7051
+      CORE_PEER_CHAINCODEADDRESS: peer0.centralbank.gov:7052
+      CORE_PEER_CHAINCODELISTENADDRESS: 0.0.0.0:7052
+      CORE_PEER_LOCALMSPID: CentralBankMSP
+      CORE_PEER_MSPCONFIGPATH: /etc/hyperledger/fabric/msp
+      CORE_PEER_TLS_CERT_FILE: /etc/hyperledger/fabric/tls/server.crt
+      CORE_PEER_TLS_KEY_FILE: /etc/hyperledger/fabric/tls/server.key
+      CORE_PEER_TLS_ROOTCERT_FILE: /etc/hyperledger/fabric/tls/ca.crt
+      CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS: couchdb0.centralbank.gov:5984
+      CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME: admin
+      CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD: fxbridge_couch_secret
+    volumes:
+      - ../config/core.yaml:/etc/hyperledger/fabric/core.yaml
+      - ../organizations/peerOrganizations/centralbank.gov/peers/peer0.centralbank.gov/msp:/etc/hyperledger/fabric/msp
+      - ../organizations/peerOrganizations/centralbank.gov/peers/peer0.centralbank.gov/tls:/etc/hyperledger/fabric/tls
+      - /var/run/docker.sock:/host/var/run/docker.sock
+    ports: ["7051:7051", "7052:7052", "9444:9444"]
+    networks: [fx_bridge]
+
+  couchdb1.centralbank.gov:
+    image: couchdb:${COUCHDB_VERSION}
+    container_name: couchdb1.centralbank.gov
+    environment:
+      <<: *couchdb-env
+    ports: ["5985:5984"]
+    networks: [fx_bridge]
+
+  peer1.centralbank.gov:
+    image: hyperledger/fabric-peer:${FABRIC_VERSION}
+    container_name: peer1.centralbank.gov
+    depends_on: [couchdb1.centralbank.gov]
+    environment:
+      <<: *fabric-peer-env
+      CORE_PEER_ID: peer1.centralbank.gov
+      CORE_PEER_ADDRESS: peer1.centralbank.gov:7053
+      CORE_PEER_GOSSIP_EXTERNALENDPOINT: peer1.centralbank.gov:7053
+      CORE_PEER_LISTENADDRESS: 0.0.0.0:7053
+      CORE_PEER_CHAINCODEADDRESS: peer1.centralbank.gov:7054
+      CORE_PEER_CHAINCODELISTENADDRESS: 0.0.0.0:7054
+      CORE_PEER_LOCALMSPID: CentralBankMSP
+      CORE_PEER_MSPCONFIGPATH: /etc/hyperledger/fabric/msp
+      CORE_PEER_TLS_CERT_FILE: /etc/hyperledger/fabric/tls/server.crt
+      CORE_PEER_TLS_KEY_FILE: /etc/hyperledger/fabric/tls/server.key
+      CORE_PEER_TLS_ROOTCERT_FILE: /etc/hyperledger/fabric/tls/ca.crt
+      CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS: couchdb1.centralbank.gov:5984
+      CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME: admin
+      CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD: fxbridge_couch_secret
+    volumes:
+      - ../config/core.yaml:/etc/hyperledger/fabric/core.yaml
+      - ../organizations/peerOrganizations/centralbank.gov/peers/peer1.centralbank.gov/msp:/etc/hyperledger/fabric/msp
+      - ../organizations/peerOrganizations/centralbank.gov/peers/peer1.centralbank.gov/tls:/etc/hyperledger/fabric/tls
+      - /var/run/docker.sock:/host/var/run/docker.sock
+    ports: ["7053:7053", "7054:7054", "9445:9444"]
+    networks: [fx_bridge]
+
+  couchdb2.centralbank.gov:
+    image: couchdb:${COUCHDB_VERSION}
+    container_name: couchdb2.centralbank.gov
+    environment:
+      <<: *couchdb-env
+    ports: ["5986:5984"]
+    networks: [fx_bridge]
+
+  peer2.centralbank.gov:
+    image: hyperledger/fabric-peer:${FABRIC_VERSION}
+    container_name: peer2.centralbank.gov
+    depends_on: [couchdb2.centralbank.gov]
+    environment:
+      <<: *fabric-peer-env
+      CORE_PEER_ID: peer2.centralbank.gov
+      CORE_PEER_ADDRESS: peer2.centralbank.gov:7055
+      CORE_PEER_GOSSIP_EXTERNALENDPOINT: peer2.centralbank.gov:7055
+      CORE_PEER_LISTENADDRESS: 0.0.0.0:7055
+      CORE_PEER_CHAINCODEADDRESS: peer2.centralbank.gov:7056
+      CORE_PEER_CHAINCODELISTENADDRESS: 0.0.0.0:7056
+      CORE_PEER_LOCALMSPID: CentralBankMSP
+      CORE_PEER_MSPCONFIGPATH: /etc/hyperledger/fabric/msp
+      CORE_PEER_TLS_CERT_FILE: /etc/hyperledger/fabric/tls/server.crt
+      CORE_PEER_TLS_KEY_FILE: /etc/hyperledger/fabric/tls/server.key
+      CORE_PEER_TLS_ROOTCERT_FILE: /etc/hyperledger/fabric/tls/ca.crt
+      CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS: couchdb2.centralbank.gov:5984
+      CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME: admin
+      CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD: fxbridge_couch_secret
+    volumes:
+      - ../config/core.yaml:/etc/hyperledger/fabric/core.yaml
+      - ../organizations/peerOrganizations/centralbank.gov/peers/peer2.centralbank.gov/msp:/etc/hyperledger/fabric/msp
+      - ../organizations/peerOrganizations/centralbank.gov/peers/peer2.centralbank.gov/tls:/etc/hyperledger/fabric/tls
+      - /var/run/docker.sock:/host/var/run/docker.sock
+    ports: ["7055:7055", "7056:7056", "9446:9444"]
+    networks: [fx_bridge]
+
+  # 鈹€鈹€鈹€ ORG2: liquidity-bankA.com 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  couchdb0.liquidity-bankA.com:
+    image: couchdb:${COUCHDB_VERSION}
+    container_name: couchdb0.liquidity-bankA.com
+    environment:
+      <<: *couchdb-env
+    ports: ["5987:5984"]
+    networks: [fx_bridge]
+
+  peer0.liquidity-bankA.com:
+    image: hyperledger/fabric-peer:${FABRIC_VERSION}
+    container_name: peer0.liquidity-bankA.com
+    depends_on: [couchdb0.liquidity-bankA.com]
+    environment:
+      <<: *fabric-peer-env
+      CORE_PEER_ID: peer0.liquidity-bankA.com
+      CORE_PEER_ADDRESS: peer0.liquidity-bankA.com:9051
+      CORE_PEER_GOSSIP_EXTERNALENDPOINT: peer0.liquidity-bankA.com:9051
+      CORE_PEER_LISTENADDRESS: 0.0.0.0:9051
+      CORE_PEER_CHAINCODEADDRESS: peer0.liquidity-bankA.com:9052
+      CORE_PEER_CHAINCODELISTENADDRESS: 0.0.0.0:9052
+      CORE_PEER_LOCALMSPID: LiquidityBankAMSP
+      CORE_PEER_MSPCONFIGPATH: /etc/hyperledger/fabric/msp
+      CORE_PEER_TLS_CERT_FILE: /etc/hyperledger/fabric/tls/server.crt
+      CORE_PEER_TLS_KEY_FILE: /etc/hyperledger/fabric/tls/server.key
+      CORE_PEER_TLS_ROOTCERT_FILE: /etc/hyperledger/fabric/tls/ca.crt
+      CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS: couchdb0.liquidity-bankA.com:5984
+      CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME: admin
+      CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD: fxbridge_couch_secret
+    volumes:
+      - ../config/core.yaml:/etc/hyperledger/fabric/core.yaml
+      - ../organizations/peerOrganizations/liquidity-bankA.com/peers/peer0.liquidity-bankA.com/msp:/etc/hyperledger/fabric/msp
+      - ../organizations/peerOrganizations/liquidity-bankA.com/peers/peer0.liquidity-bankA.com/tls:/etc/hyperledger/fabric/tls
+      - /var/run/docker.sock:/host/var/run/docker.sock
+    ports: ["9051:9051", "9052:9052", "9447:9444"]
+    networks: [fx_bridge]
+
+  couchdb1.liquidity-bankA.com:
+    image: couchdb:${COUCHDB_VERSION}
+    container_name: couchdb1.liquidity-bankA.com
+    environment:
+      <<: *couchdb-env
+    ports: ["5988:5984"]
+    networks: [fx_bridge]
+
+  peer1.liquidity-bankA.com:
+    image: hyperledger/fabric-peer:${FABRIC_VERSION}
+    container_name: peer1.liquidity-bankA.com
+    depends_on: [couchdb1.liquidity-bankA.com]
+    environment:
+      <<: *fabric-peer-env
+      CORE_PEER_ID: peer1.liquidity-bankA.com
+      CORE_PEER_ADDRESS: peer1.liquidity-bankA.com:9053
+      CORE_PEER_GOSSIP_EXTERNALENDPOINT: peer1.liquidity-bankA.com:9053
+      CORE_PEER_LISTENADDRESS: 0.0.0.0:9053
+      CORE_PEER_CHAINCODEADDRESS: peer1.liquidity-bankA.com:9054
+      CORE_PEER_CHAINCODELISTENADDRESS: 0.0.0.0:9054
+      CORE_PEER_LOCALMSPID: LiquidityBankAMSP
+      CORE_PEER_MSPCONFIGPATH: /etc/hyperledger/fabric/msp
+      CORE_PEER_TLS_CERT_FILE: /etc/hyperledger/fabric/tls/server.crt
+      CORE_PEER_TLS_KEY_FILE: /etc/hyperledger/fabric/tls/server.key
+      CORE_PEER_TLS_ROOTCERT_FILE: /etc/hyperledger/fabric/tls/ca.crt
+      CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS: couchdb1.liquidity-bankA.com:5984
+      CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME: admin
+      CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD: fxbridge_couch_secret
+    volumes:
+      - ../config/core.yaml:/etc/hyperledger/fabric/core.yaml
+      - ../organizations/peerOrganizations/liquidity-bankA.com/peers/peer1.liquidity-bankA.com/msp:/etc/hyperledger/fabric/msp
+      - ../organizations/peerOrganizations/liquidity-bankA.com/peers/peer1.liquidity-bankA.com/tls:/etc/hyperledger/fabric/tls
+      - /var/run/docker.sock:/host/var/run/docker.sock
+    ports: ["9053:9053", "9054:9054", "9448:9444"]
+    networks: [fx_bridge]
+
+  couchdb2.liquidity-bankA.com:
+    image: couchdb:${COUCHDB_VERSION}
+    container_name: couchdb2.liquidity-bankA.com
+    environment:
+      <<: *couchdb-env
+    ports: ["5989:5984"]
+    networks: [fx_bridge]
+
+  peer2.liquidity-bankA.com:
+    image: hyperledger/fabric-peer:${FABRIC_VERSION}
+    container_name: peer2.liquidity-bankA.com
+    depends_on: [couchdb2.liquidity-bankA.com]
+    environment:
+      <<: *fabric-peer-env
+      CORE_PEER_ID: peer2.liquidity-bankA.com
+      CORE_PEER_ADDRESS: peer2.liquidity-bankA.com:9055
+      CORE_PEER_GOSSIP_EXTERNALENDPOINT: peer2.liquidity-bankA.com:9055
+      CORE_PEER_LISTENADDRESS: 0.0.0.0:9055
+      CORE_PEER_CHAINCODEADDRESS: peer2.liquidity-bankA.com:9056
+      CORE_PEER_CHAINCODELISTENADDRESS: 0.0.0.0:9056
+      CORE_PEER_LOCALMSPID: LiquidityBankAMSP
+      CORE_PEER_MSPCONFIGPATH: /etc/hyperledger/fabric/msp
+      CORE_PEER_TLS_CERT_FILE: /etc/hyperledger/fabric/tls/server.crt
+      CORE_PEER_TLS_KEY_FILE: /etc/hyperledger/fabric/tls/server.key
+      CORE_PEER_TLS_ROOTCERT_FILE: /etc/hyperledger/fabric/tls/ca.crt
+      CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS: couchdb2.liquidity-bankA.com:5984
+      CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME: admin
+      CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD: fxbridge_couch_secret
+    volumes:
+      - ../config/core.yaml:/etc/hyperledger/fabric/core.yaml
+      - ../organizations/peerOrganizations/liquidity-bankA.com/peers/peer2.liquidity-bankA.com/msp:/etc/hyperledger/fabric/msp
+      - ../organizations/peerOrganizations/liquidity-bankA.com/peers/peer2.liquidity-bankA.com/tls:/etc/hyperledger/fabric/tls
+      - /var/run/docker.sock:/host/var/run/docker.sock
+    ports: ["9055:9055", "9056:9056", "9449:9444"]
+    networks: [fx_bridge]
+
+  # 鈹€鈹€鈹€ ORG3: liquidity-bankB.com 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  couchdb0.liquidity-bankB.com:
+    image: couchdb:${COUCHDB_VERSION}
+    container_name: couchdb0.liquidity-bankB.com
+    environment:
+      <<: *couchdb-env
+    ports: ["5990:5984"]
+    networks: [fx_bridge]
+
+  peer0.liquidity-bankB.com:
+    image: hyperledger/fabric-peer:${FABRIC_VERSION}
+    container_name: peer0.liquidity-bankB.com
+    depends_on: [couchdb0.liquidity-bankB.com]
+    environment:
+      <<: *fabric-peer-env
+      CORE_PEER_ID: peer0.liquidity-bankB.com
+      CORE_PEER_ADDRESS: peer0.liquidity-bankB.com:11051
+      CORE_PEER_GOSSIP_EXTERNALENDPOINT: peer0.liquidity-bankB.com:11051
+      CORE_PEER_LISTENADDRESS: 0.0.0.0:11051
+      CORE_PEER_CHAINCODEADDRESS: peer0.liquidity-bankB.com:11052
+      CORE_PEER_CHAINCODELISTENADDRESS: 0.0.0.0:11052
+      CORE_PEER_LOCALMSPID: LiquidityBankBMSP
+      CORE_PEER_MSPCONFIGPATH: /etc/hyperledger/fabric/msp
+      CORE_PEER_TLS_CERT_FILE: /etc/hyperledger/fabric/tls/server.crt
+      CORE_PEER_TLS_KEY_FILE: /etc/hyperledger/fabric/tls/server.key
+      CORE_PEER_TLS_ROOTCERT_FILE: /etc/hyperledger/fabric/tls/ca.crt
+      CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS: couchdb0.liquidity-bankB.com:5984
+      CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME: admin
+      CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD: fxbridge_couch_secret
+    volumes:
+      - ../config/core.yaml:/etc/hyperledger/fabric/core.yaml
+      - ../organizations/peerOrganizations/liquidity-bankB.com/peers/peer0.liquidity-bankB.com/msp:/etc/hyperledger/fabric/msp
+      - ../organizations/peerOrganizations/liquidity-bankB.com/peers/peer0.liquidity-bankB.com/tls:/etc/hyperledger/fabric/tls
+      - /var/run/docker.sock:/host/var/run/docker.sock
+    ports: ["11051:11051", "11052:11052", "9450:9444"]
+    networks: [fx_bridge]
+
+  couchdb1.liquidity-bankB.com:
+    image: couchdb:${COUCHDB_VERSION}
+    container_name: couchdb1.liquidity-bankB.com
+    environment:
+      <<: *couchdb-env
+    ports: ["5991:5984"]
+    networks: [fx_bridge]
+
+  peer1.liquidity-bankB.com:
+    image: hyperledger/fabric-peer:${FABRIC_VERSION}
+    container_name: peer1.liquidity-bankB.com
+    depends_on: [couchdb1.liquidity-bankB.com]
+    environment:
+      <<: *fabric-peer-env
+      CORE_PEER_ID: peer1.liquidity-bankB.com
+      CORE_PEER_ADDRESS: peer1.liquidity-bankB.com:11053
+      CORE_PEER_GOSSIP_EXTERNALENDPOINT: peer1.liquidity-bankB.com:11053
+      CORE_PEER_LISTENADDRESS: 0.0.0.0:11053
+      CORE_PEER_CHAINCODEADDRESS: peer1.liquidity-bankB.com:11054
+      CORE_PEER_CHAINCODELISTENADDRESS: 0.0.0.0:11054
+      CORE_PEER_LOCALMSPID: LiquidityBankBMSP
+      CORE_PEER_MSPCONFIGPATH: /etc/hyperledger/fabric/msp
+      CORE_PEER_TLS_CERT_FILE: /etc/hyperledger/fabric/tls/server.crt
+      CORE_PEER_TLS_KEY_FILE: /etc/hyperledger/fabric/tls/server.key
+      CORE_PEER_TLS_ROOTCERT_FILE: /etc/hyperledger/fabric/tls/ca.crt
+      CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS: couchdb1.liquidity-bankB.com:5984
+      CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME: admin
+      CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD: fxbridge_couch_secret
+    volumes:
+      - ../config/core.yaml:/etc/hyperledger/fabric/core.yaml
+      - ../organizations/peerOrganizations/liquidity-bankB.com/peers/peer1.liquidity-bankB.com/msp:/etc/hyperledger/fabric/msp
+      - ../organizations/peerOrganizations/liquidity-bankB.com/peers/peer1.liquidity-bankB.com/tls:/etc/hyperledger/fabric/tls
+      - /var/run/docker.sock:/host/var/run/docker.sock
+    ports: ["11053:11053", "11054:11054", "9451:9444"]
+    networks: [fx_bridge]
+
+  couchdb2.liquidity-bankB.com:
+    image: couchdb:${COUCHDB_VERSION}
+    container_name: couchdb2.liquidity-bankB.com
+    environment:
+      <<: *couchdb-env
+    ports: ["5992:5984"]
+    networks: [fx_bridge]
+
+  peer2.liquidity-bankB.com:
+    image: hyperledger/fabric-peer:${FABRIC_VERSION}
+    container_name: peer2.liquidity-bankB.com
+    depends_on: [couchdb2.liquidity-bankB.com]
+    environment:
+      <<: *fabric-peer-env
+      CORE_PEER_ID: peer2.liquidity-bankB.com
+      CORE_PEER_ADDRESS: peer2.liquidity-bankB.com:11055
+      CORE_PEER_GOSSIP_EXTERNALENDPOINT: peer2.liquidity-bankB.com:11055
+      CORE_PEER_LISTENADDRESS: 0.0.0.0:11055
+      CORE_PEER_CHAINCODEADDRESS: peer2.liquidity-bankB.com:11056
+      CORE_PEER_CHAINCODELISTENADDRESS: 0.0.0.0:11056
+      CORE_PEER_LOCALMSPID: LiquidityBankBMSP
+      CORE_PEER_MSPCONFIGPATH: /etc/hyperledger/fabric/msp
+      CORE_PEER_TLS_CERT_FILE: /etc/hyperledger/fabric/tls/server.crt
+      CORE_PEER_TLS_KEY_FILE: /etc/hyperledger/fabric/tls/server.key
+      CORE_PEER_TLS_ROOTCERT_FILE: /etc/hyperledger/fabric/tls/ca.crt
+      CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS: couchdb2.liquidity-bankB.com:5984
+      CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME: admin
+      CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD: fxbridge_couch_secret
+    volumes:
+      - ../config/core.yaml:/etc/hyperledger/fabric/core.yaml
+      - ../organizations/peerOrganizations/liquidity-bankB.com/peers/peer2.liquidity-bankB.com/msp:/etc/hyperledger/fabric/msp
+      - ../organizations/peerOrganizations/liquidity-bankB.com/peers/peer2.liquidity-bankB.com/tls:/etc/hyperledger/fabric/tls
+      - /var/run/docker.sock:/host/var/run/docker.sock
+    ports: ["11055:11055", "11056:11056", "9452:9444"]
+    networks: [fx_bridge]
+
+  # 鈹€鈹€鈹€ Fabric CA (per org 鈥?dynamic peer enrollment) 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  ca.centralbank.gov:
+    image: hyperledger/fabric-ca:${FABRIC_CA_VERSION}
+    container_name: ca.centralbank.gov
+    environment:
+      FABRIC_CA_HOME: /etc/hyperledger/fabric-ca-server
+      FABRIC_CA_SERVER_CA_NAME: ca-centralbank
+    command: sh -c "fabric-ca-server start -c /etc/hyperledger/fabric-ca-server-config.yaml"
+    volumes:
+      - ../organizations/fabric-ca/centralbank.gov:/etc/hyperledger/fabric-ca-server
+      - ../config/fabric-ca/ca-centralbank.yaml:/etc/hyperledger/fabric-ca-server-config.yaml
+    ports: ["7054:7054"]
+    networks: [fx_bridge]
+
+  ca.liquidity-bankA.com:
+    image: hyperledger/fabric-ca:${FABRIC_CA_VERSION}
+    container_name: ca.liquidity-bankA.com
+    environment:
+      FABRIC_CA_HOME: /etc/hyperledger/fabric-ca-server
+      FABRIC_CA_SERVER_CA_NAME: ca-banka
+    command: sh -c "fabric-ca-server start -c /etc/hyperledger/fabric-ca-server-config.yaml"
+    volumes:
+      - ../organizations/fabric-ca/liquidity-bankA.com:/etc/hyperledger/fabric-ca-server
+      - ../config/fabric-ca/ca-banka.yaml:/etc/hyperledger/fabric-ca-server-config.yaml
+    ports: ["8054:8054"]
+    networks: [fx_bridge]
+
+  ca.liquidity-bankB.com:
+    image: hyperledger/fabric-ca:${FABRIC_CA_VERSION}
+    container_name: ca.liquidity-bankB.com
+    environment:
+      FABRIC_CA_HOME: /etc/hyperledger/fabric-ca-server
+      FABRIC_CA_SERVER_CA_NAME: ca-bankb
+    command: sh -c "fabric-ca-server start -c /etc/hyperledger/fabric-ca-server-config.yaml"
+    volumes:
+      - ../organizations/fabric-ca/liquidity-bankB.com:/etc/hyperledger/fabric-ca-server
+      - ../config/fabric-ca/ca-bankb.yaml:/etc/hyperledger/fabric-ca-server-config.yaml
+    ports: ["9054:9054"]
+    networks: [fx_bridge]
+
+  # 鈹€鈹€鈹€ Fabric CLI (channel ops / join) 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  fabric-cli:
+    image: hyperledger/fabric-tools:${FABRIC_VERSION}
+    container_name: fabric-cli
+    tty: true
+    stdin_open: true
+    environment:
+      FABRIC_CFG_PATH: /etc/hyperledger/fabric
+      GOPATH: /opt/gopath
+      CORE_PEER_TLS_ENABLED: "true"
+    volumes:
+      - ../organizations:/etc/hyperledger/fabric/organizations
+      - ../channel-artifacts:/etc/hyperledger/fabric/channel-artifacts
+      - ../scripts:/etc/hyperledger/fabric/scripts
+      - ../config:/etc/hyperledger/fabric/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks: [fx_bridge]
+
+  tenderflow_ccaas:
+    build:
+      context: ../chaincode/tenderflow
+      dockerfile: Dockerfile
+    container_name: tenderflow_ccaas
+    environment:
+      CHAINCODE_SERVER_ADDRESS: "0.0.0.0:9999"
+      CORE_CHAINCODE_ID_NAME: "tenderflow_1"
+    ports:
+      - "9999:9999"
+    networks: [fx_bridge]
+
+  # 鈹€鈹€鈹€ Component 1: Orchestration API 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  fx-bridge-orchestrator:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: fx-bridge-orchestrator
+    environment:
+      NODE_ENV: production
+      SERVICE_MODE: orchestrator
+      PORT: 4100
+      CHANNEL_ID: fx-bridge-channel
+      DOCKER_SOCK: /var/run/docker.sock
+      COMPOSE_PROJECT_DIR: /workspace
+      COMPOSE_FILE: docker/docker-compose-fabric-14.yaml
+      ORGANIZATIONS_DIR: /workspace/organizations
+    volumes:
+      - ..:/workspace
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "4100:4100"
+    networks: [fx_bridge]
+
+  # 鈹€鈹€鈹€ Component 2: Etherscan-style Explorer API 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+  fx-bridge-explorer-api:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: fx-bridge-explorer-api
+    environment:
+      NODE_ENV: production
+      SERVICE_MODE: explorer
+      PORT: 4200
+      CHANNEL_ID: fx-bridge-channel
+      PEER_ENDPOINT: peer0.centralbank.gov:7051
+      PEER_GATEWAY_HOST: peer0.centralbank.gov
+      ORDERER_GATEWAY_HOST: orderer1.clearing-raft.org
+      COMPOSE_PROJECT_DIR: /workspace
+      ORGANIZATIONS_DIR: /workspace/organizations
+    volumes:
+      - ..:/workspace
+    ports:
+      - "4200:4200"
+    networks: [fx_bridge]
+    depends_on:
+      - peer0.centralbank.gov

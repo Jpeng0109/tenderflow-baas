@@ -1,0 +1,720 @@
+{
+  "experiment_id": "circular_isomorphic_20260604_055537",
+  "mode": "live_testbed",
+  "project_id": "COAST-50-2025",
+  "project_name": "Coastal Community Water-Carbon Co-Management (50 households)",
+  "transactions": [
+    {
+      "ok": true,
+      "latency_ms": 326.15,
+      "function": "CreateTender",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "project_name": "Coastal Community Water-Carbon Co-Management (50 households)",
+        "rfp_cid": "ipfs://QmCoastalISSG-LCA-Biochar637kg2025",
+        "bid_bond_pct": 0.0,
+        "deadline": "2025-12-31T23:59:59Z"
+      },
+      "semantic": "RegisterWaterCarbonProject"
+    },
+    {
+      "ok": true,
+      "latency_ms": 449.53,
+      "function": "CommitBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-A",
+        "bid_hash": "sha256:Module-01-ncb-2025-01-134.4"
+      },
+      "semantic": "CommitNCBReportHash",
+      "module_id": "Module-01"
+    },
+    {
+      "ok": true,
+      "latency_ms": 314.54,
+      "function": "CommitBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-B",
+        "bid_hash": "sha256:Module-02-ncb-2025-01-134.4"
+      },
+      "semantic": "CommitNCBReportHash",
+      "module_id": "Module-02"
+    },
+    {
+      "ok": true,
+      "latency_ms": 345.81,
+      "function": "CommitBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-C",
+        "bid_hash": "sha256:Module-03-ncb-2025-01-134.4"
+      },
+      "semantic": "CommitNCBReportHash",
+      "module_id": "Module-03"
+    },
+    {
+      "ok": true,
+      "latency_ms": 620.1,
+      "function": "CommitBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-D",
+        "bid_hash": "sha256:Module-04-ncb-2025-01-134.4"
+      },
+      "semantic": "CommitNCBReportHash",
+      "module_id": "Module-04"
+    },
+    {
+      "ok": true,
+      "latency_ms": 354.25,
+      "function": "CommitBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-E",
+        "bid_hash": "sha256:Module-05-ncb-2025-01-134.4"
+      },
+      "semantic": "CommitNCBReportHash",
+      "module_id": "Module-05"
+    },
+    {
+      "ok": true,
+      "latency_ms": 324.23,
+      "function": "CommitBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-F",
+        "bid_hash": "sha256:Module-06-ncb-2025-01-134.4"
+      },
+      "semantic": "CommitNCBReportHash",
+      "module_id": "Module-06"
+    },
+    {
+      "ok": true,
+      "latency_ms": 560.05,
+      "function": "CommitBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-G",
+        "bid_hash": "sha256:Module-07-ncb-2025-01-134.4"
+      },
+      "semantic": "CommitNCBReportHash",
+      "module_id": "Module-07"
+    },
+    {
+      "ok": true,
+      "latency_ms": 411.67,
+      "function": "CommitBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-H",
+        "bid_hash": "sha256:Module-08-ncb-2025-01-134.4"
+      },
+      "semantic": "CommitNCBReportHash",
+      "module_id": "Module-08"
+    },
+    {
+      "ok": true,
+      "latency_ms": 390.87,
+      "function": "InitReputation",
+      "payload": [
+        "Bidder-A",
+        "0.92"
+      ],
+      "semantic": "InitModuleTrustScore",
+      "module_id": "Module-01"
+    },
+    {
+      "ok": true,
+      "latency_ms": 476.74,
+      "function": "InitReputation",
+      "payload": [
+        "Bidder-B",
+        "0.9"
+      ],
+      "semantic": "InitModuleTrustScore",
+      "module_id": "Module-02"
+    },
+    {
+      "ok": true,
+      "latency_ms": 345.17,
+      "function": "InitReputation",
+      "payload": [
+        "Bidder-C",
+        "0.88"
+      ],
+      "semantic": "InitModuleTrustScore",
+      "module_id": "Module-03"
+    },
+    {
+      "ok": true,
+      "latency_ms": 342.92,
+      "function": "InitReputation",
+      "payload": [
+        "Bidder-D",
+        "0.85"
+      ],
+      "semantic": "InitModuleTrustScore",
+      "module_id": "Module-04"
+    },
+    {
+      "ok": true,
+      "latency_ms": 299.75,
+      "function": "InitReputation",
+      "payload": [
+        "Bidder-E",
+        "0.84"
+      ],
+      "semantic": "InitModuleTrustScore",
+      "module_id": "Module-05"
+    },
+    {
+      "ok": true,
+      "latency_ms": 375.25,
+      "function": "InitReputation",
+      "payload": [
+        "Bidder-F",
+        "0.87"
+      ],
+      "semantic": "InitModuleTrustScore",
+      "module_id": "Module-06"
+    },
+    {
+      "ok": true,
+      "latency_ms": 390.57,
+      "function": "InitReputation",
+      "payload": [
+        "Bidder-G",
+        "0.83"
+      ],
+      "semantic": "InitModuleTrustScore",
+      "module_id": "Module-07"
+    },
+    {
+      "ok": true,
+      "latency_ms": 312.93,
+      "function": "InitReputation",
+      "payload": [
+        "Bidder-H",
+        "0.81"
+      ],
+      "semantic": "InitModuleTrustScore",
+      "module_id": "Module-08"
+    },
+    {
+      "ok": true,
+      "latency_ms": 312.25,
+      "function": "RevealBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-A",
+        "file_cid": "sha256:Module-01-ncb-2025-01-134.4"
+      },
+      "semantic": "AuditorVerifyNCBReport",
+      "module_id": "Module-01"
+    },
+    {
+      "ok": true,
+      "latency_ms": 316.05,
+      "function": "RevealBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-B",
+        "file_cid": "sha256:Module-02-ncb-2025-01-134.4"
+      },
+      "semantic": "AuditorVerifyNCBReport",
+      "module_id": "Module-02"
+    },
+    {
+      "ok": true,
+      "latency_ms": 323.32,
+      "function": "RevealBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-C",
+        "file_cid": "sha256:Module-03-ncb-2025-01-134.4"
+      },
+      "semantic": "AuditorVerifyNCBReport",
+      "module_id": "Module-03"
+    },
+    {
+      "ok": true,
+      "latency_ms": 327.02,
+      "function": "RevealBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-D",
+        "file_cid": "sha256:Module-04-ncb-2025-01-134.4"
+      },
+      "semantic": "AuditorVerifyNCBReport",
+      "module_id": "Module-04"
+    },
+    {
+      "ok": true,
+      "latency_ms": 493.06,
+      "function": "RevealBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-E",
+        "file_cid": "sha256:Module-05-ncb-2025-01-134.4"
+      },
+      "semantic": "AuditorVerifyNCBReport",
+      "module_id": "Module-05"
+    },
+    {
+      "ok": true,
+      "latency_ms": 333.34,
+      "function": "RevealBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-F",
+        "file_cid": "sha256:Module-06-ncb-2025-01-134.4"
+      },
+      "semantic": "AuditorVerifyNCBReport",
+      "module_id": "Module-06"
+    },
+    {
+      "ok": false,
+      "latency_ms": 412.51,
+      "function": "RevealBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-G",
+        "file_cid": "ipfs://QmTAMPERED_SENSOR_GATEWAY_FAILURE"
+      },
+      "semantic": "AuditorVerifyNCBReport",
+      "module_id": "Module-07",
+      "expected_failure": true
+    },
+    {
+      "ok": false,
+      "latency_ms": 318.07,
+      "function": "RevealBid",
+      "payload": {
+        "tender_id": "COAST-50-2025",
+        "bidder_id": "Bidder-H",
+        "file_cid": "ipfs://QmTAMPERED_SENSOR_GATEWAY_FAILURE"
+      },
+      "semantic": "AuditorVerifyNCBReport",
+      "module_id": "Module-08",
+      "expected_failure": true
+    },
+    {
+      "ok": true,
+      "latency_ms": 352.68,
+      "function": "UpdateBehavioralReputation",
+      "payload": [
+        "Bidder-C",
+        "Success"
+      ],
+      "semantic": "UpdateOperatorCompliance"
+    },
+    {
+      "ok": true,
+      "latency_ms": 347.8,
+      "function": "UpdateBehavioralReputation",
+      "payload": [
+        "Bidder-C",
+        "Success"
+      ],
+      "semantic": "UpdateOperatorCompliance"
+    },
+    {
+      "ok": true,
+      "latency_ms": 433.46,
+      "function": "UpdateBehavioralReputation",
+      "payload": [
+        "Bidder-C",
+        "Success"
+      ],
+      "semantic": "UpdateOperatorCompliance"
+    },
+    {
+      "ok": true,
+      "latency_ms": 328.43,
+      "function": "UpdateBehavioralReputation",
+      "payload": [
+        "Bidder-C",
+        "Success"
+      ],
+      "semantic": "UpdateOperatorCompliance"
+    },
+    {
+      "ok": true,
+      "latency_ms": 366.19,
+      "function": "UpdateBehavioralReputation",
+      "payload": [
+        "Bidder-C",
+        "Success"
+      ],
+      "semantic": "UpdateOperatorCompliance"
+    },
+    {
+      "ok": true,
+      "latency_ms": 408.47,
+      "function": "UpdateBehavioralReputation",
+      "payload": [
+        "Bidder-C",
+        "Success"
+      ],
+      "semantic": "UpdateOperatorCompliance"
+    }
+  ],
+  "semantic_mapping_table": [
+    {
+      "tx_index": 1,
+      "chaincode_function": "CreateTender",
+      "semantic_step": "RegisterWaterCarbonProject",
+      "entity": "System",
+      "ok": true,
+      "latency_ms": 326.15
+    },
+    {
+      "tx_index": 2,
+      "chaincode_function": "CommitBid",
+      "semantic_step": "CommitNCBReportHash",
+      "entity": "Module-01",
+      "ok": true,
+      "latency_ms": 449.53
+    },
+    {
+      "tx_index": 3,
+      "chaincode_function": "CommitBid",
+      "semantic_step": "CommitNCBReportHash",
+      "entity": "Module-02",
+      "ok": true,
+      "latency_ms": 314.54
+    },
+    {
+      "tx_index": 4,
+      "chaincode_function": "CommitBid",
+      "semantic_step": "CommitNCBReportHash",
+      "entity": "Module-03",
+      "ok": true,
+      "latency_ms": 345.81
+    },
+    {
+      "tx_index": 5,
+      "chaincode_function": "CommitBid",
+      "semantic_step": "CommitNCBReportHash",
+      "entity": "Module-04",
+      "ok": true,
+      "latency_ms": 620.1
+    },
+    {
+      "tx_index": 6,
+      "chaincode_function": "CommitBid",
+      "semantic_step": "CommitNCBReportHash",
+      "entity": "Module-05",
+      "ok": true,
+      "latency_ms": 354.25
+    },
+    {
+      "tx_index": 7,
+      "chaincode_function": "CommitBid",
+      "semantic_step": "CommitNCBReportHash",
+      "entity": "Module-06",
+      "ok": true,
+      "latency_ms": 324.23
+    },
+    {
+      "tx_index": 8,
+      "chaincode_function": "CommitBid",
+      "semantic_step": "CommitNCBReportHash",
+      "entity": "Module-07",
+      "ok": true,
+      "latency_ms": 560.05
+    },
+    {
+      "tx_index": 9,
+      "chaincode_function": "CommitBid",
+      "semantic_step": "CommitNCBReportHash",
+      "entity": "Module-08",
+      "ok": true,
+      "latency_ms": 411.67
+    },
+    {
+      "tx_index": 10,
+      "chaincode_function": "InitReputation",
+      "semantic_step": "InitModuleTrustScore",
+      "entity": "Module-01",
+      "ok": true,
+      "latency_ms": 390.87
+    },
+    {
+      "tx_index": 11,
+      "chaincode_function": "InitReputation",
+      "semantic_step": "InitModuleTrustScore",
+      "entity": "Module-02",
+      "ok": true,
+      "latency_ms": 476.74
+    },
+    {
+      "tx_index": 12,
+      "chaincode_function": "InitReputation",
+      "semantic_step": "InitModuleTrustScore",
+      "entity": "Module-03",
+      "ok": true,
+      "latency_ms": 345.17
+    },
+    {
+      "tx_index": 13,
+      "chaincode_function": "InitReputation",
+      "semantic_step": "InitModuleTrustScore",
+      "entity": "Module-04",
+      "ok": true,
+      "latency_ms": 342.92
+    },
+    {
+      "tx_index": 14,
+      "chaincode_function": "InitReputation",
+      "semantic_step": "InitModuleTrustScore",
+      "entity": "Module-05",
+      "ok": true,
+      "latency_ms": 299.75
+    },
+    {
+      "tx_index": 15,
+      "chaincode_function": "InitReputation",
+      "semantic_step": "InitModuleTrustScore",
+      "entity": "Module-06",
+      "ok": true,
+      "latency_ms": 375.25
+    },
+    {
+      "tx_index": 16,
+      "chaincode_function": "InitReputation",
+      "semantic_step": "InitModuleTrustScore",
+      "entity": "Module-07",
+      "ok": true,
+      "latency_ms": 390.57
+    },
+    {
+      "tx_index": 17,
+      "chaincode_function": "InitReputation",
+      "semantic_step": "InitModuleTrustScore",
+      "entity": "Module-08",
+      "ok": true,
+      "latency_ms": 312.93
+    },
+    {
+      "tx_index": 18,
+      "chaincode_function": "RevealBid",
+      "semantic_step": "AuditorVerifyNCBReport",
+      "entity": "Module-01",
+      "ok": true,
+      "latency_ms": 312.25
+    },
+    {
+      "tx_index": 19,
+      "chaincode_function": "RevealBid",
+      "semantic_step": "AuditorVerifyNCBReport",
+      "entity": "Module-02",
+      "ok": true,
+      "latency_ms": 316.05
+    },
+    {
+      "tx_index": 20,
+      "chaincode_function": "RevealBid",
+      "semantic_step": "AuditorVerifyNCBReport",
+      "entity": "Module-03",
+      "ok": true,
+      "latency_ms": 323.32
+    },
+    {
+      "tx_index": 21,
+      "chaincode_function": "RevealBid",
+      "semantic_step": "AuditorVerifyNCBReport",
+      "entity": "Module-04",
+      "ok": true,
+      "latency_ms": 327.02
+    },
+    {
+      "tx_index": 22,
+      "chaincode_function": "RevealBid",
+      "semantic_step": "AuditorVerifyNCBReport",
+      "entity": "Module-05",
+      "ok": true,
+      "latency_ms": 493.06
+    },
+    {
+      "tx_index": 23,
+      "chaincode_function": "RevealBid",
+      "semantic_step": "AuditorVerifyNCBReport",
+      "entity": "Module-06",
+      "ok": true,
+      "latency_ms": 333.34
+    },
+    {
+      "tx_index": 24,
+      "chaincode_function": "RevealBid",
+      "semantic_step": "AuditorVerifyNCBReport",
+      "entity": "Module-07",
+      "ok": false,
+      "latency_ms": 412.51
+    },
+    {
+      "tx_index": 25,
+      "chaincode_function": "RevealBid",
+      "semantic_step": "AuditorVerifyNCBReport",
+      "entity": "Module-08",
+      "ok": false,
+      "latency_ms": 318.07
+    },
+    {
+      "tx_index": 26,
+      "chaincode_function": "UpdateBehavioralReputation",
+      "semantic_step": "UpdateOperatorCompliance",
+      "entity": "Bidder-C",
+      "ok": true,
+      "latency_ms": 352.68
+    },
+    {
+      "tx_index": 27,
+      "chaincode_function": "UpdateBehavioralReputation",
+      "semantic_step": "UpdateOperatorCompliance",
+      "entity": "Bidder-C",
+      "ok": true,
+      "latency_ms": 347.8
+    },
+    {
+      "tx_index": 28,
+      "chaincode_function": "UpdateBehavioralReputation",
+      "semantic_step": "UpdateOperatorCompliance",
+      "entity": "Bidder-C",
+      "ok": true,
+      "latency_ms": 433.46
+    },
+    {
+      "tx_index": 29,
+      "chaincode_function": "UpdateBehavioralReputation",
+      "semantic_step": "UpdateOperatorCompliance",
+      "entity": "Bidder-C",
+      "ok": true,
+      "latency_ms": 328.43
+    },
+    {
+      "tx_index": 30,
+      "chaincode_function": "UpdateBehavioralReputation",
+      "semantic_step": "UpdateOperatorCompliance",
+      "entity": "Bidder-C",
+      "ok": true,
+      "latency_ms": 366.19
+    },
+    {
+      "tx_index": 31,
+      "chaincode_function": "UpdateBehavioralReputation",
+      "semantic_step": "UpdateOperatorCompliance",
+      "entity": "Bidder-C",
+      "ok": true,
+      "latency_ms": 408.47
+    }
+  ],
+  "block_height_before": 40,
+  "block_height_after": 49,
+  "benchmark": {
+    "invoke_count": 30,
+    "elapsed_sec": 16.249,
+    "tps": 1.85,
+    "blocks_before": 50,
+    "blocks_after": 56,
+    "latency_ms": {
+      "min": 333.7,
+      "max": 696.47,
+      "avg": 429.24,
+      "p95": 564.9
+    },
+    "latencies_raw": [
+      397.11,
+      366.65,
+      368.35,
+      354.84,
+      474.85,
+      696.47,
+      433.32,
+      414.6,
+      393.4,
+      522.21,
+      397.08,
+      412.4,
+      557.5,
+      586.09,
+      404.2,
+      405.35,
+      333.7,
+      395.84,
+      411.37,
+      437.68,
+      340.42,
+      388.19,
+      564.9,
+      556.2,
+      350.32,
+      396.96,
+      335.04,
+      400.99,
+      431.17,
+      349.95
+    ]
+  },
+  "network": {
+    "timestamp_utc": "2026-06-04T05:56:30.313964+00:00",
+    "channel_id": "fx-bridge-channel",
+    "orderer_count": 5,
+    "peer_count": 9,
+    "orderers": [
+      "orderer1.clearing-raft.org",
+      "orderer3.clearing-raft.org",
+      "orderer4.clearing-raft.org",
+      "orderer5.clearing-raft.org",
+      "orderer2.clearing-raft.org"
+    ],
+    "peers": [
+      "peer1.centralbank.gov",
+      "peer1.liquidity-bankA.com",
+      "peer0.liquidity-bankA.com",
+      "peer2.centralbank.gov",
+      "peer0.centralbank.gov",
+      "peer2.liquidity-bankA.com",
+      "peer2.liquidity-bankB.com",
+      "peer0.liquidity-bankB.com",
+      "peer1.liquidity-bankB.com"
+    ],
+    "infrastructure_nodes": 14,
+    "block_height": 56,
+    "fabric_version": "2.5.12",
+    "state_database": "CouchDB",
+    "consensus": "etcd/Raft (5 orderers)",
+    "explorer_api": {
+      "latestBlockHeight": 56,
+      "totalQuotationTxs": 37,
+      "totalTenderTxs": 37,
+      "activeNodes": 14,
+      "totalInfrastructureNodes": 14,
+      "activeNodesLabel": "14/14 Live",
+      "averageBlockTimeSec": 5.182,
+      "channelId": "fx-bridge-channel",
+      "ordererCluster": 5,
+      "peerOrgs": 3,
+      "dataSource": "mainnet_experiment",
+      "experimentId": "mainnet_20260603_121730"
+    }
+  },
+  "carbon_context": {
+    "community_households": 50,
+    "annual_NCB_tCO2e": 12.9,
+    "monthly_NCB_kg_simulated": 1075.2,
+    "modules": 8
+  },
+  "performance_summary": {
+    "tps": 1.85,
+    "p95_latency_ms": 564.9,
+    "infrastructure_nodes": 14,
+    "orderers": 5,
+    "peers": 9
+  },
+  "integrity_failures": [
+    "Module-07",
+    "Module-08"
+  ]
+}

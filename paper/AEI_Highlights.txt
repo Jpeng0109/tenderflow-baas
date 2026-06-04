@@ -1,0 +1,8 @@
+Advanced Engineering Informatics — Highlights
+(Submit as separate editable file; max 85 characters per bullet including spaces)
+
+• Live 14-node Fabric mainnet simulates Ma'anshan bridge tendering
+• On-chain reputation engine filters bidder after breach reveal
+• Measured 2.14 TPS sequential throughput; p95 latency 416 ms
+• Commit-reveal smart contracts automate sealed bid lifecycle
+• Dynamic reputation outperforms static qualification-only ranking

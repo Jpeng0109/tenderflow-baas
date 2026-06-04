@@ -1,0 +1,233 @@
+{
+  "telemetry": {
+    "channelId": "fx-bridge-channel",
+    "latestBlockHeight": 23,
+    "totalTenderTxs": 37,
+    "activeNodesLabel": "14/14",
+    "dataSource": "mainnet_experiment"
+  },
+  "blocks": [
+    {
+      "number": 5,
+      "elapsedSec": 2,
+      "txCount": 1,
+      "minedBy": "orderer1.clearing-raft.org"
+    },
+    {
+      "number": 6,
+      "elapsedSec": 2,
+      "txCount": 1,
+      "minedBy": "orderer1.clearing-raft.org"
+    },
+    {
+      "number": 7,
+      "elapsedSec": 2,
+      "txCount": 1,
+      "minedBy": "orderer1.clearing-raft.org"
+    },
+    {
+      "number": 8,
+      "elapsedSec": 2,
+      "txCount": 1,
+      "minedBy": "orderer1.clearing-raft.org"
+    },
+    {
+      "number": 9,
+      "elapsedSec": 2,
+      "txCount": 1,
+      "minedBy": "orderer1.clearing-raft.org"
+    },
+    {
+      "number": 10,
+      "elapsedSec": 2,
+      "txCount": 1,
+      "minedBy": "orderer1.clearing-raft.org"
+    },
+    {
+      "number": 11,
+      "elapsedSec": 2,
+      "txCount": 1,
+      "minedBy": "orderer1.clearing-raft.org"
+    },
+    {
+      "number": 12,
+      "elapsedSec": 2,
+      "txCount": 1,
+      "minedBy": "orderer1.clearing-raft.org"
+    }
+  ],
+  "transactions": [
+    {
+      "hash": "mainnet-0000-Create",
+      "from": "Regulator",
+      "value": "TENDER_CREATE",
+      "status": "OK",
+      "payload": {
+        "tx_type": "TENDER_CREATE",
+        "bidder_id": "Regulator",
+        "latency_ms": 515.62
+      }
+    },
+    {
+      "hash": "mainnet-0001-Commit",
+      "from": "Bidder-A",
+      "value": "BID_COMMIT",
+      "status": "OK",
+      "payload": {
+        "tx_type": "BID_COMMIT",
+        "bidder_id": "Bidder-A",
+        "latency_ms": 363.07
+      }
+    },
+    {
+      "hash": "mainnet-0002-Commit",
+      "from": "Bidder-B",
+      "value": "BID_COMMIT",
+      "status": "OK",
+      "payload": {
+        "tx_type": "BID_COMMIT",
+        "bidder_id": "Bidder-B",
+        "latency_ms": 345.84
+      }
+    },
+    {
+      "hash": "mainnet-0003-Commit",
+      "from": "Bidder-C",
+      "value": "BID_COMMIT",
+      "status": "OK",
+      "payload": {
+        "tx_type": "BID_COMMIT",
+        "bidder_id": "Bidder-C",
+        "latency_ms": 411.1
+      }
+    },
+    {
+      "hash": "mainnet-0004-Commit",
+      "from": "Bidder-D",
+      "value": "BID_COMMIT",
+      "status": "OK",
+      "payload": {
+        "tx_type": "BID_COMMIT",
+        "bidder_id": "Bidder-D",
+        "latency_ms": 314.14
+      }
+    },
+    {
+      "hash": "mainnet-0005-Commit",
+      "from": "Bidder-E",
+      "value": "BID_COMMIT",
+      "status": "OK",
+      "payload": {
+        "tx_type": "BID_COMMIT",
+        "bidder_id": "Bidder-E",
+        "latency_ms": 303.79
+      }
+    },
+    {
+      "hash": "mainnet-0006-Commit",
+      "from": "Bidder-F",
+      "value": "BID_COMMIT",
+      "status": "OK",
+      "payload": {
+        "tx_type": "BID_COMMIT",
+        "bidder_id": "Bidder-F",
+        "latency_ms": 314.29
+      }
+    },
+    {
+      "hash": "mainnet-0007-Commit",
+      "from": "Bidder-G",
+      "value": "BID_COMMIT",
+      "status": "OK",
+      "payload": {
+        "tx_type": "BID_COMMIT",
+        "bidder_id": "Bidder-G",
+        "latency_ms": 297.83
+      }
+    },
+    {
+      "hash": "mainnet-0008-Commit",
+      "from": "Bidder-H",
+      "value": "BID_COMMIT",
+      "status": "OK",
+      "payload": {
+        "tx_type": "BID_COMMIT",
+        "bidder_id": "Bidder-H",
+        "latency_ms": 294.46
+      }
+    },
+    {
+      "hash": "mainnet-0009-InitRe",
+      "from": "Regulator",
+      "value": "REPUTATION_UPDATE",
+      "status": "OK",
+      "payload": {
+        "tx_type": "REPUTATION_UPDATE",
+        "bidder_id": "Regulator",
+        "latency_ms": 344.22
+      }
+    },
+    {
+      "hash": "mainnet-0010-InitRe",
+      "from": "Regulator",
+      "value": "REPUTATION_UPDATE",
+      "status": "OK",
+      "payload": {
+        "tx_type": "REPUTATION_UPDATE",
+        "bidder_id": "Regulator",
+        "latency_ms": 332.58
+      }
+    },
+    {
+      "hash": "mainnet-0011-InitRe",
+      "from": "Regulator",
+      "value": "REPUTATION_UPDATE",
+      "status": "OK",
+      "payload": {
+        "tx_type": "REPUTATION_UPDATE",
+        "bidder_id": "Regulator",
+        "latency_ms": 318.1
+      }
+    }
+  ],
+  "detail": {
+    "hash": "mainnet-0000-Create",
+    "blockNumber": 12847,
+    "channelId": "tenderflow-channel",
+    "readSet": [
+      {
+        "key": "Commit:MAS-2024-BRIDGE-001:Bidder-C",
+        "version": 12846
+      }
+    ],
+    "writeSet": [
+      {
+        "key": "Reveal:MAS-2024-BRIDGE-001:Bidder-C",
+        "value": {
+          "tx_type": "BID_REVEAL",
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "project_name": "Ma'anshan Yangtze River Bridge",
+          "bidder_id": "Bidder-C",
+          "timestamp": "2026-06-03T12:19:23.845Z",
+          "file_cid": "ipfs://QmMaanshanSteelTruss3248mBoQ2024",
+          "integrity_status": "VERIFIED_SUCCESS"
+        }
+      }
+    ],
+    "rwSetInspector": {
+      "tx_type": "BID_REVEAL",
+      "tender_id": "MAS-2024-BRIDGE-001",
+      "project_name": "Ma'anshan Yangtze River Bridge",
+      "bidder_id": "Bidder-C",
+      "timestamp": "2026-06-03T12:19:23.845Z",
+      "file_cid": "ipfs://QmMaanshanSteelTruss3248mBoQ2024",
+      "integrity_status": "VERIFIED_SUCCESS"
+    },
+    "endorsements": [
+      "peer0.liquidity-bankA.com",
+      "peer0.centralbank.gov"
+    ],
+    "source": "mock"
+  },
+  "source": "mainnet_experiment"
+}

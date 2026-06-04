@@ -1,0 +1,65 @@
+# TENDERFLOW — Explorer + Console + API on Render
+# Dashboard: New → Blueprint → connect this repo → Apply
+
+services:
+  - type: web
+    name: tenderflow-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SERVICE_MODE
+        value: unified
+      - key: CLOUD_DEMO_MODE
+        value: "true"
+      - key: CONSOLE_URL
+        fromService:
+          type: web
+          name: tenderflow-console
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: EXPLORER_URL
+        fromService:
+          type: web
+          name: tenderflow-explorer
+          envVarKey: RENDER_EXTERNAL_URL
+
+  - type: web
+    name: tenderflow-explorer
+    runtime: static
+    plan: free
+    rootDir: explorer
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_ORIGIN
+        fromService:
+          type: web
+          name: tenderflow-api
+          envVarKey: RENDER_EXTERNAL_URL
+
+  - type: web
+    name: tenderflow-console
+    runtime: static
+    plan: free
+    rootDir: console
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_ORIGIN
+        fromService:
+          type: web
+          name: tenderflow-api
+          envVarKey: RENDER_EXTERNAL_URL

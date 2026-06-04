@@ -1,0 +1,38 @@
+version: 1.5.0
+port: 8054
+ca:
+  name: ca-banka
+  keyfile: /etc/hyperledger/fabric-ca-server/ca-key.pem
+  certfile: /etc/hyperledger/fabric-ca-server/ca-cert.pem
+  chainfile: /etc/hyperledger/fabric-ca-server/ca-chain.pem
+db:
+  type: sqlite3
+  datasource: /etc/hyperledger/fabric-ca-server/fabric-ca-server.db
+tls:
+  enabled: true
+  certfile: /etc/hyperledger/fabric-ca-server/tls-cert.pem
+  keyfile: /etc/hyperledger/fabric-ca-server/tls-key.pem
+csr:
+  names:
+    - C: US
+      ST: "Cross Border"
+      L: "FX Bridge"
+      O: liquidity-bankA.com
+      OU: market-maker
+  hosts:
+    - ca.liquidity-bankA.com
+    - localhost
+affiliations:
+  banka:
+    liquidity: []
+    peer: []
+registry:
+  maxenrollments: -1
+  identities:
+    - name: admin
+      affiliations: [banka.liquidity]
+      attrs:
+        hf.Registrar.Roles: "*"
+        hf.Registrar.DelegateRoles: "*"
+        hf.Revoker: true
+        hf.Registrar.Attributes: "*"

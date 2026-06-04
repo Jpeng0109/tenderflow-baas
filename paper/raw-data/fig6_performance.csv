@@ -1,0 +1,11 @@
+metric,value,unit,source
+peak_tps,2.14,invokes/sec,mainnet benchmark n=30
+latency_CommitBid,330.6,ms,mainnet simulation
+latency_RevealBid,340.1,ms,mainnet simulation
+latency_Rep.Beh.Reputation,355.8,ms,mainnet simulation
+latency_CreateTender,515.6,ms,mainnet simulation
+block_height,23,blocks,peer channel getinfo
+bench_latency_min,293.09,ms,mainnet benchmark
+bench_latency_max,512.88,ms,mainnet benchmark
+bench_latency_avg,356.42,ms,mainnet benchmark
+bench_latency_p95,416.05,ms,mainnet benchmark

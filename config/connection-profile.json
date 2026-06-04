@@ -1,0 +1,80 @@
+{
+  "name": "financial-bridge-network",
+  "version": "1.0.0",
+  "client": {
+    "organization": "CentralBank",
+    "connection": {
+      "timeout": {
+        "peer": { "endorser": "300" }
+      }
+    }
+  },
+  "channels": {
+    "fx-bridge-channel": {
+      "orderers": [
+        "orderer1.clearing-raft.org",
+        "orderer2.clearing-raft.org",
+        "orderer3.clearing-raft.org"
+      ],
+      "peers": {
+        "peer0.centralbank.gov": { "endorsingPeer": true, "chaincodeQuery": true, "ledgerQuery": true },
+        "peer0.liquidity-bankA.com": { "endorsingPeer": true, "chaincodeQuery": true },
+        "peer0.liquidity-bankB.com": { "chaincodeQuery": true, "ledgerQuery": true }
+      }
+    }
+  },
+  "organizations": {
+    "CentralBank": {
+      "mspid": "CentralBankMSP",
+      "peers": ["peer0.centralbank.gov"],
+      "certificateAuthorities": ["ca.centralbank.gov"]
+    },
+    "LiquidityBankA": {
+      "mspid": "LiquidityBankAMSP",
+      "peers": ["peer0.liquidity-bankA.com"],
+      "certificateAuthorities": ["ca.liquidity-bankA.com"]
+    },
+    "LiquidityBankB": {
+      "mspid": "LiquidityBankBMSP",
+      "peers": ["peer0.liquidity-bankB.com"],
+      "certificateAuthorities": ["ca.liquidity-bankB.com"]
+    }
+  },
+  "orderers": {
+    "orderer1.clearing-raft.org": {
+      "url": "grpcs://orderer1.clearing-raft.org:7050",
+      "grpcOptions": { "ssl-target-name-override": "orderer1.clearing-raft.org" }
+    }
+  },
+  "peers": {
+    "peer0.centralbank.gov": {
+      "url": "grpcs://peer0.centralbank.gov:7051",
+      "grpcOptions": { "ssl-target-name-override": "peer0.centralbank.gov" }
+    },
+    "peer0.liquidity-bankA.com": {
+      "url": "grpcs://peer0.liquidity-bankA.com:9051",
+      "grpcOptions": { "ssl-target-name-override": "peer0.liquidity-bankA.com" }
+    },
+    "peer0.liquidity-bankB.com": {
+      "url": "grpcs://peer0.liquidity-bankB.com:11051",
+      "grpcOptions": { "ssl-target-name-override": "peer0.liquidity-bankB.com" }
+    }
+  },
+  "certificateAuthorities": {
+    "ca.centralbank.gov": {
+      "url": "https://ca.centralbank.gov:7054",
+      "caName": "ca-centralbank",
+      "tlsCACerts": { "path": "organizations/peerOrganizations/centralbank.gov/ca/ca.centralbank.gov-cert.pem" }
+    },
+    "ca.liquidity-bankA.com": {
+      "url": "https://ca.liquidity-bankA.com:8054",
+      "caName": "ca-banka",
+      "tlsCACerts": { "path": "organizations/peerOrganizations/liquidity-bankA.com/ca/ca.liquidity-bankA.com-cert.pem" }
+    },
+    "ca.liquidity-bankB.com": {
+      "url": "https://ca.liquidity-bankB.com:9054",
+      "caName": "ca-bankb",
+      "tlsCACerts": { "path": "organizations/peerOrganizations/liquidity-bankB.com/ca/ca.liquidity-bankB.com-cert.pem" }
+    }
+  }
+}

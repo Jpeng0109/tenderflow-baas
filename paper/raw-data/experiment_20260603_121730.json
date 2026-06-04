@@ -1,0 +1,543 @@
+{
+  "experiment_id": "mainnet_20260603_121730",
+  "project": "Ma'anshan Yangtze River Bridge TENDERFLOW",
+  "simulation": {
+    "transactions": [
+      {
+        "ok": true,
+        "latency_ms": 515.62,
+        "function": "CreateTender",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "project_name": "Ma'anshan Yangtze River Bridge",
+          "rfp_cid": "ipfs://QmMaanshanRFP2024Bridge3248mSteelTruss",
+          "bid_bond_pct": 2.0,
+          "deadline": "2024-12-31T23:59:59Z"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 363.07,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-A",
+          "bid_hash": "sha256:Bidder-A-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 345.84,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-B",
+          "bid_hash": "sha256:Bidder-B-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 411.1,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-C",
+          "bid_hash": "sha256:Bidder-C-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 314.14,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-D",
+          "bid_hash": "sha256:Bidder-D-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 303.79,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-E",
+          "bid_hash": "sha256:Bidder-E-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 314.29,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-F",
+          "bid_hash": "sha256:Bidder-F-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 297.83,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-G",
+          "bid_hash": "sha256:Bidder-G-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 294.46,
+        "function": "CommitBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-H",
+          "bid_hash": "sha256:Bidder-H-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 344.22,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-A",
+          "0.95"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 332.58,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-B",
+          "0.95"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 318.1,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-C",
+          "0.78"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 309.28,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-D",
+          "0.82"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 296.44,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-E",
+          "0.8"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 332.97,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-F",
+          "0.88"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 334.3,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-G",
+          "0.76"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 359.94,
+        "function": "InitReputation",
+        "payload": [
+          "Bidder-H",
+          "0.74"
+        ]
+      },
+      {
+        "ok": false,
+        "latency_ms": 374.02,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-B",
+          "file_cid": "ipfs://QmWRONGHASH_breach_simulation"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 334.51,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-A",
+          "file_cid": "sha256:Bidder-A-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 338.43,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-C",
+          "file_cid": "sha256:Bidder-C-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 331.12,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-D",
+          "file_cid": "sha256:Bidder-D-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 315.19,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-E",
+          "file_cid": "sha256:Bidder-E-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 377.35,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-F",
+          "file_cid": "sha256:Bidder-F-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 328.83,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-G",
+          "file_cid": "sha256:Bidder-G-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 321.62,
+        "function": "RevealBid",
+        "payload": {
+          "tender_id": "MAS-2024-BRIDGE-001",
+          "bidder_id": "Bidder-H",
+          "file_cid": "sha256:Bidder-H-mas-bridge-boq-2024"
+        }
+      },
+      {
+        "ok": true,
+        "latency_ms": 299.05,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 348.82,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 423.68,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 337.35,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 443.7,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 464.66,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 323.09,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 335.04,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 329.06,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 306.93,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 332.78,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      },
+      {
+        "ok": true,
+        "latency_ms": 325.8,
+        "function": "UpdateBehavioralReputation",
+        "payload": [
+          "Bidder-C",
+          "Success"
+        ]
+      }
+    ],
+    "block_height_before": 5,
+    "block_height_after": 16,
+    "blocks_produced": 11,
+    "reputations": {
+      "Bidder-A": "{\"agent_id\":\"Bidder-A\",\"verified_reputation\":0.95,\"behavioral_reputation\":0.525,\"social_reputation\":0.5,\"total_score\":0.6475,\"last_outcome\":\"Success\",\"updated_at\":\"2026-06-03T12:17:53Z\"}",
+      "Bidder-B": "{\"agent_id\":\"Bidder-B\",\"behavioral_reputation\":0.5,\"last_outcome\":\"Init\",\"social_reputation\":0.5,\"total_score\":0.6349999999999999,\"updated_at\":\"2026-06-03T12:17:47Z\",\"verified_reputation\":0.95}",
+      "Bidder-C": "{\"agent_id\":\"Bidder-C\",\"verified_reputation\":0.78,\"behavioral_reputation\":0.6131095312500001,\"social_reputation\":0.5,\"total_score\":0.640554765625,\"last_outcome\":\"Success\",\"updated_at\":\"2026-06-03T12:18:05Z\"}",
+      "Bidder-D": "{\"agent_id\":\"Bidder-D\",\"verified_reputation\":0.82,\"behavioral_reputation\":0.525,\"social_reputation\":0.5,\"total_score\":0.6084999999999999,\"last_outcome\":\"Success\",\"updated_at\":\"2026-06-03T12:17:55Z\"}",
+      "Bidder-E": "{\"agent_id\":\"Bidder-E\",\"verified_reputation\":0.8,\"behavioral_reputation\":0.525,\"social_reputation\":0.5,\"total_score\":0.6024999999999999,\"last_outcome\":\"Success\",\"updated_at\":\"2026-06-03T12:17:56Z\"}",
+      "Bidder-F": "{\"agent_id\":\"Bidder-F\",\"verified_reputation\":0.88,\"behavioral_reputation\":0.525,\"social_reputation\":0.5,\"total_score\":0.6265,\"last_outcome\":\"Success\",\"updated_at\":\"2026-06-03T12:17:57Z\"}",
+      "Bidder-G": "{\"agent_id\":\"Bidder-G\",\"verified_reputation\":0.76,\"behavioral_reputation\":0.525,\"social_reputation\":0.5,\"total_score\":0.5905,\"last_outcome\":\"Success\",\"updated_at\":\"2026-06-03T12:17:57Z\"}",
+      "Bidder-H": "{\"agent_id\":\"Bidder-H\",\"verified_reputation\":0.74,\"behavioral_reputation\":0.525,\"social_reputation\":0.5,\"total_score\":0.5845,\"last_outcome\":\"Success\",\"updated_at\":\"2026-06-03T12:17:58Z\"}"
+    }
+  },
+  "benchmark": {
+    "invoke_count": 30,
+    "elapsed_sec": 14.014,
+    "tps": 2.14,
+    "blocks_before": 17,
+    "blocks_after": 23,
+    "latency_ms": {
+      "min": 293.09,
+      "max": 512.88,
+      "avg": 356.42,
+      "p95": 416.05
+    },
+    "latencies_raw": [
+      334.63,
+      309.36,
+      328.67,
+      304.74,
+      348.86,
+      389.27,
+      365.32,
+      341.54,
+      357.07,
+      333.27,
+      417.36,
+      324.58,
+      293.09,
+      333.95,
+      348.55,
+      349.03,
+      404.61,
+      410.35,
+      305.44,
+      512.88,
+      343.21,
+      358.89,
+      310.76,
+      384.07,
+      341.83,
+      326.29,
+      416.05,
+      385.96,
+      374.36,
+      338.65
+    ]
+  },
+  "network": {
+    "timestamp_utc": "2026-06-03T12:18:27.156118+00:00",
+    "channel_id": "fx-bridge-channel",
+    "orderer_count": 5,
+    "peer_count": 9,
+    "orderers": [
+      "orderer1.clearing-raft.org",
+      "orderer3.clearing-raft.org",
+      "orderer4.clearing-raft.org",
+      "orderer5.clearing-raft.org",
+      "orderer2.clearing-raft.org"
+    ],
+    "peers": [
+      "peer1.centralbank.gov",
+      "peer1.liquidity-bankA.com",
+      "peer0.liquidity-bankA.com",
+      "peer2.centralbank.gov",
+      "peer0.centralbank.gov",
+      "peer2.liquidity-bankA.com",
+      "peer2.liquidity-bankB.com",
+      "peer0.liquidity-bankB.com",
+      "peer1.liquidity-bankB.com"
+    ],
+    "infrastructure_nodes": 14,
+    "block_height": 23,
+    "fabric_version": "2.5.12",
+    "state_database": "CouchDB",
+    "consensus": "etcd/Raft (5 orderers)",
+    "explorer_api": {
+      "latestBlockHeight": 12847,
+      "totalQuotationTxs": 97165,
+      "totalTenderTxs": 97165,
+      "activeNodes": 0,
+      "totalInfrastructureNodes": 14,
+      "activeNodesLabel": "0/14 Live",
+      "averageBlockTimeSec": 2.1,
+      "channelId": "tenderflow-channel",
+      "ordererCluster": 5,
+      "peerOrgs": 3,
+      "dataSource": "mock"
+    }
+  },
+  "scenario_analysis": {
+    "scenario1_static_winner": "Bidder-A",
+    "scenario1_static_verified_rep": 0.95,
+    "scenario2_dynamic_winner": "Bidder-A",
+    "scenario2_dynamic_total_score": 0.6475,
+    "bidder_b_total_after_breach": 0.6349999999999999,
+    "bidder_b_behavioral_after_breach": 0.5,
+    "bidder_b_filtered": true,
+    "all_scores": {
+      "Bidder-A": {
+        "agent_id": "Bidder-A",
+        "verified_reputation": 0.95,
+        "behavioral_reputation": 0.525,
+        "social_reputation": 0.5,
+        "total_score": 0.6475,
+        "last_outcome": "Success",
+        "updated_at": "2026-06-03T12:17:53Z"
+      },
+      "Bidder-B": {
+        "agent_id": "Bidder-B",
+        "behavioral_reputation": 0.5,
+        "last_outcome": "Init",
+        "social_reputation": 0.5,
+        "total_score": 0.6349999999999999,
+        "updated_at": "2026-06-03T12:17:47Z",
+        "verified_reputation": 0.95
+      },
+      "Bidder-C": {
+        "agent_id": "Bidder-C",
+        "verified_reputation": 0.78,
+        "behavioral_reputation": 0.6131095312500001,
+        "social_reputation": 0.5,
+        "total_score": 0.640554765625,
+        "last_outcome": "Success",
+        "updated_at": "2026-06-03T12:18:05Z"
+      },
+      "Bidder-D": {
+        "agent_id": "Bidder-D",
+        "verified_reputation": 0.82,
+        "behavioral_reputation": 0.525,
+        "social_reputation": 0.5,
+        "total_score": 0.6084999999999999,
+        "last_outcome": "Success",
+        "updated_at": "2026-06-03T12:17:55Z"
+      },
+      "Bidder-E": {
+        "agent_id": "Bidder-E",
+        "verified_reputation": 0.8,
+        "behavioral_reputation": 0.525,
+        "social_reputation": 0.5,
+        "total_score": 0.6024999999999999,
+        "last_outcome": "Success",
+        "updated_at": "2026-06-03T12:17:56Z"
+      },
+      "Bidder-F": {
+        "agent_id": "Bidder-F",
+        "verified_reputation": 0.88,
+        "behavioral_reputation": 0.525,
+        "social_reputation": 0.5,
+        "total_score": 0.6265,
+        "last_outcome": "Success",
+        "updated_at": "2026-06-03T12:17:57Z"
+      },
+      "Bidder-G": {
+        "agent_id": "Bidder-G",
+        "verified_reputation": 0.76,
+        "behavioral_reputation": 0.525,
+        "social_reputation": 0.5,
+        "total_score": 0.5905,
+        "last_outcome": "Success",
+        "updated_at": "2026-06-03T12:17:57Z"
+      },
+      "Bidder-H": {
+        "agent_id": "Bidder-H",
+        "verified_reputation": 0.74,
+        "behavioral_reputation": 0.525,
+        "social_reputation": 0.5,
+        "total_score": 0.5845,
+        "last_outcome": "Success",
+        "updated_at": "2026-06-03T12:17:58Z"
+      }
+    }
+  }
+}

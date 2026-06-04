@@ -1,0 +1,26 @@
+node_modules/
+dist/
+backend/wallet/
+organizations/
+channel-artifacts/
+chaincode/tenderflow/vendor/
+docker/organizations/
+*.block
+*.tx
+.env
+.env.local
+.env.*.local
+.DS_Store
+npm-debug.log*
+*.log
+Thumbs.db
+
+# Large local artifacts (not needed for cloud UI deploy)
+paper/*.docx
+paper/*.pdf
+paper/figures/*.png
+paper/figures/*.pdf
+
+# Keep experiment snapshot for backend demo mode
+!backend/data/
+!backend/data/experiment_latest.json
