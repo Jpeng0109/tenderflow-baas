@@ -21,6 +21,8 @@ services:
       - key: CLOUD_DEMO_MODE
         value: "true"
       - key: CONSOLE_URL
-        sync: false
+        value: https://console-gray-pi.vercel.app
       - key: EXPLORER_URL
-        sync: false
+        value: https://explorer-omega-pearl.vercel.app
+      - key: CORS_ORIGINS
+        value: https://console-gray-pi.vercel.app,https://explorer-omega-pearl.vercel.app
