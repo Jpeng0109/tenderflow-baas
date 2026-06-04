@@ -1,5 +1,5 @@
-# TENDERFLOW — Explorer + Console + API on Render
-# One-click: https://dashboard.render.com/blueprint/new?repo=https://github.com/Jpeng0109/tenderflow-baas
+# TENDERFLOW API — Render only (Explorer + Console on Vercel)
+# https://dashboard.render.com/blueprint/new?repo=https://github.com/Jpeng0109/tenderflow-baas
 
 services:
   - type: web
@@ -21,54 +21,6 @@ services:
       - key: CLOUD_DEMO_MODE
         value: "true"
       - key: CONSOLE_URL
-        fromService:
-          type: web
-          name: tenderflow-console
-          envVarKey: RENDER_EXTERNAL_URL
+        sync: false
       - key: EXPLORER_URL
-        fromService:
-          type: web
-          name: tenderflow-explorer
-          envVarKey: RENDER_EXTERNAL_URL
-
-  - type: web
-    name: tenderflow-explorer
-    runtime: static
-    plan: starter
-    branch: main
-    rootDir: explorer
-    buildCommand: npm install && npm run build
-    staticPublishPath: dist
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
-    envVars:
-      - key: NODE_VERSION
-        value: "20"
-      - key: VITE_API_ORIGIN
-        fromService:
-          type: web
-          name: tenderflow-api
-          envVarKey: RENDER_EXTERNAL_URL
-
-  - type: web
-    name: tenderflow-console
-    runtime: static
-    plan: starter
-    branch: main
-    rootDir: console
-    buildCommand: npm install && npm run build
-    staticPublishPath: dist
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
-    envVars:
-      - key: NODE_VERSION
-        value: "20"
-      - key: VITE_API_ORIGIN
-        fromService:
-          type: web
-          name: tenderflow-api
-          envVarKey: RENDER_EXTERNAL_URL
+        sync: false
