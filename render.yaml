@@ -1,11 +1,12 @@
 # TENDERFLOW — Explorer + Console + API on Render
-# Dashboard: New → Blueprint → connect this repo → Apply
+# One-click: https://dashboard.render.com/blueprint/new?repo=https://github.com/Jpeng0109/tenderflow-baas
 
 services:
   - type: web
     name: tenderflow-api
     runtime: node
     plan: starter
+    branch: main
     rootDir: backend
     buildCommand: npm install --omit=dev
     startCommand: npm start
@@ -32,6 +33,7 @@ services:
     name: tenderflow-explorer
     runtime: static
     plan: starter
+    branch: main
     rootDir: explorer
     buildCommand: npm install && npm run build
     staticPublishPath: dist
@@ -50,6 +52,7 @@ services:
     name: tenderflow-console
     runtime: static
     plan: starter
+    branch: main
     rootDir: console
     buildCommand: npm install && npm run build
     staticPublishPath: dist
