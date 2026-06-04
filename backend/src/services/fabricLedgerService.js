@@ -1,9 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import fabricNetwork from 'fabric-network';
-
-const { Gateway, Wallets } = fabricNetwork;
 import { logger } from '../utils/logger.js';
 import { CHANNEL_ID } from '../config/topology.js';
 
@@ -14,6 +11,15 @@ const WORKSPACE_ROOT = process.env.COMPOSE_PROJECT_DIR
 let gatewayInstance = null;
 let networkInstance = null;
 let connectPromise = null;
+
+async function loadFabricSdk() {
+  try {
+    const mod = await import('fabric-network');
+    return mod.default || mod;
+  } catch (err) {
+    throw new Error(`fabric-network unavailable: ${err.message}`);
+  }
+}
 
 function resolveOrgPaths() {
   const org = 'centralbank.gov';
@@ -65,6 +71,8 @@ async function getGateway() {
   if (connectPromise) return connectPromise;
 
   connectPromise = (async () => {
+    const fabricNetwork = await loadFabricSdk();
+    const { Gateway, Wallets } = fabricNetwork;
     const paths = resolveOrgPaths();
     if (!fs.existsSync(paths.ccpPath) || !fs.existsSync(paths.mspPath)) {
       throw new Error('Fabric crypto not found — run generate-crypto.sh');

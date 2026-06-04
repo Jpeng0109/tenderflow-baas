@@ -1,4 +1,3 @@
-import FabricCAServices from 'fabric-ca-client';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -41,6 +40,10 @@ function caTlsCert(orgDomain) {
  * Enroll a dynamic peer via Fabric CA Node SDK.
  */
 export async function enrollDynamicPeer({ orgDomain, peerIndex }) {
+  if (process.env.CLOUD_DEMO_MODE === 'true') {
+    throw new Error('Fabric CA enrollment is unavailable in cloud demo mode');
+  }
+  const { default: FabricCAServices } = await import('fabric-ca-client');
   const org = PEER_ORGS[orgDomain];
   const caCfg = CA_REGISTRY[orgDomain];
   if (!org || !caCfg) throw new Error(`No CA config for ${orgDomain}`);

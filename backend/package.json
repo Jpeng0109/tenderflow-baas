@@ -10,16 +10,18 @@
     "lint": "eslint src/"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": "20.x"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "fabric-ca-client": "^2.2.20",
-    "fabric-network": "^2.2.20",
     "uuid": "^11.0.5",
     "winston": "^3.17.0"
+  },
+  "optionalDependencies": {
+    "fabric-ca-client": "^2.2.20",
+    "fabric-network": "^2.2.20"
   },
   "devDependencies": {
     "eslint": "^9.18.0"
