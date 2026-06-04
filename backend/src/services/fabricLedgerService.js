@@ -58,6 +58,9 @@ function patchConnectionProfile(ccp, paths) {
 }
 
 async function getGateway() {
+  if (process.env.CLOUD_DEMO_MODE === 'true') {
+    throw new Error('Fabric gateway disabled in cloud demo mode');
+  }
   if (gatewayInstance) return gatewayInstance;
   if (connectPromise) return connectPromise;
 
@@ -106,6 +109,7 @@ async function getGateway() {
 }
 
 export async function isLedgerAvailable() {
+  if (process.env.CLOUD_DEMO_MODE === 'true') return false;
   try {
     await getGateway();
     return true;

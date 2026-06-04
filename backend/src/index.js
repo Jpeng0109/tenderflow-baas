@@ -20,7 +20,7 @@ const EXPLORER_URL = process.env.EXPLORER_URL || 'http://localhost:5174';
 
 app.get('/health', async (_req, res) => {
   let ledgerConnected = false;
-  if (SERVICE_MODE === 'explorer' || SERVICE_MODE === 'unified') {
+  if (!isCloudDemo && (SERVICE_MODE === 'explorer' || SERVICE_MODE === 'unified')) {
     try {
       const { isLedgerAvailable } = await import('./services/fabricLedgerService.js');
       ledgerConnected = await isLedgerAvailable();
@@ -30,6 +30,7 @@ app.get('/health', async (_req, res) => {
     service: 'fx-bridge-platform-api',
     mode: SERVICE_MODE,
     status: 'ok',
+    cloudDemo: isCloudDemo,
     ledgerConnected,
     timestamp: new Date().toISOString(),
   });
