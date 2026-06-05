@@ -11,10 +11,11 @@ import { inspectNodeHealth } from '../controllers/dockerOrchestrator.js';
 import { getChannelBlockHeight } from '../controllers/channelJoiner.js';
 import { logger } from '../utils/logger.js';
 import {
-  isExperimentSnapshotAvailable,
   getExperimentTelemetry,
   getExperimentBlocks,
   getExperimentTransactions,
+  getExperimentNodes,
+  isExperimentSnapshotAvailable,
 } from './experimentSnapshotService.js';
 import {
   isLedgerAvailable,
@@ -117,13 +118,23 @@ function generateMockTransactions(count = 12) {
 }
 
 async function ensureLedgerMode() {
+  if (process.env.CLOUD_DEMO_MODE === 'true') return false;
   if (ledgerMode) return true;
   const ok = await isLedgerAvailable();
   ledgerMode = ok;
   return ok;
 }
 
+function useCloudSnapshot() {
+  return process.env.CLOUD_DEMO_MODE === 'true' && isExperimentSnapshotAvailable();
+}
+
 export async function getDashboardTelemetry() {
+  if (useCloudSnapshot()) {
+    const expSnap = getExperimentTelemetry();
+    if (expSnap) return expSnap;
+  }
+
   let liveNodes = 0;
   try {
     const health = await inspectNodeHealth();
@@ -199,6 +210,10 @@ export async function getDashboardTelemetry() {
 }
 
 export async function getLatestBlocks(count = 8) {
+  if (useCloudSnapshot()) {
+    const expBlocks = getExperimentBlocks(count);
+    if (expBlocks.length) return expBlocks;
+  }
   if (await ensureLedgerMode()) {
     try {
       const blocks = await getLedgerBlocks(count);
@@ -216,6 +231,10 @@ export async function getLatestBlocks(count = 8) {
 }
 
 export async function getLatestTransactions(count = 12) {
+  if (useCloudSnapshot()) {
+    const expTxs = getExperimentTransactions(count);
+    if (expTxs.length) return expTxs;
+  }
   if (await ensureLedgerMode()) {
     try {
       const txs = await getLedgerTxs(count);
@@ -230,6 +249,24 @@ export async function getLatestTransactions(count = 12) {
   const expTxs = getExperimentTransactions(count);
   if (expTxs.length) return expTxs;
   return generateMockTransactions(count);
+}
+
+export async function getSyncedNodes() {
+  if (useCloudSnapshot()) {
+    return getExperimentNodes();
+  }
+  let liveNodes = 0;
+  try {
+    const health = await inspectNodeHealth();
+    liveNodes = health.liveCount;
+  } catch { /* offline */ }
+  return {
+    nodes: [],
+    liveCount: liveNodes,
+    channelId: CHANNEL_ID,
+    blockHeight: mockBlockHeight,
+    dataSource: liveNodes ? 'docker' : 'mock',
+  };
 }
 
 export async function getBlockDetail(blockNum) {

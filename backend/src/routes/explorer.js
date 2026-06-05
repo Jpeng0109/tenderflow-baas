@@ -6,6 +6,7 @@ import {
   getTransactionDetail,
   getBlockDetail,
   searchExplorer,
+  getSyncedNodes,
 } from '../services/explorerService.js';
 
 const router = Router();
@@ -27,9 +28,13 @@ router.get('/blocks/latest', async (req, res) => {
 });
 
 router.get('/transactions/latest', async (req, res) => {
-  const limit = Math.min(parseInt(req.query.limit || '12', 10), 50);
+  const limit = Math.min(parseInt(req.query.limit || '40', 10), 100);
   const transactions = await getLatestTransactions(limit);
-  res.json({ transactions });
+  res.json({ transactions, count: transactions.length });
+});
+
+router.get('/nodes/sync', async (_req, res) => {
+  res.json(await getSyncedNodes());
 });
 
 router.get('/blocks/:num', async (req, res) => {
