@@ -32,7 +32,7 @@ app.get('/health', async (_req, res) => {
     status: 'ok',
     cloudDemo: isCloudDemo,
     ledgerConnected,
-    deployTag: '2026-06-04-r4',
+    deployTag: '2026-06-04-r5',
     timestamp: new Date().toISOString(),
   });
 });
