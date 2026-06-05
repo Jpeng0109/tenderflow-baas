@@ -1,4 +1,4 @@
-# Render cloud API — no Docker-in-Docker, includes experiment snapshot
+# Optional local/docker build — Render Blueprint uses native Node (see render.yaml)
 FROM node:20-alpine
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY backend/data ./data
 
 ENV NODE_ENV=production
 ENV CLOUD_DEMO_MODE=true
-ENV PORT=4100
+# Do NOT set PORT — Render injects PORT at runtime (typically 10000)
 
-EXPOSE 4100
+EXPOSE 10000
 CMD ["node", "src/index.js"]

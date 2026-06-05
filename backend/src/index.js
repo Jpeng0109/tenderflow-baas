@@ -8,8 +8,24 @@ import { logger } from './utils/logger.js';
 
 const SERVICE_MODE = process.env.SERVICE_MODE || 'unified';
 const PORT = parseInt(process.env.PORT || '4100', 10);
+const HOST = process.env.HOST || '0.0.0.0';
 
 const app = express();
+
+// Health first — no middleware, instant response for Render probes
+app.get('/health', (_req, res) => {
+  res.status(200).json({
+    service: 'fx-bridge-platform-api',
+    mode: SERVICE_MODE,
+    status: 'ok',
+    cloudDemo: process.env.CLOUD_DEMO_MODE === 'true',
+    ledgerConnected: false,
+    deployTag: '2026-06-05-r6',
+    port: PORT,
+    timestamp: new Date().toISOString(),
+  });
+});
+
 const isCloudDemo = process.env.CLOUD_DEMO_MODE === 'true';
 const corsOrigins = process.env.CORS_ORIGINS?.split(',').map((s) => s.trim()).filter(Boolean);
 app.use(cors(isCloudDemo || !corsOrigins?.length ? { origin: true } : { origin: corsOrigins }));
@@ -18,31 +34,14 @@ app.use(express.json());
 const CONSOLE_URL = process.env.CONSOLE_URL || 'http://localhost:5173';
 const EXPLORER_URL = process.env.EXPLORER_URL || 'http://localhost:5174';
 
-app.get('/health', async (_req, res) => {
+app.get('/', async (_req, res) => {
   let ledgerConnected = false;
-  if (!isCloudDemo && (SERVICE_MODE === 'explorer' || SERVICE_MODE === 'unified')) {
+  if (!isCloudDemo) {
     try {
       const { isLedgerAvailable } = await import('./services/fabricLedgerService.js');
       ledgerConnected = await isLedgerAvailable();
     } catch { /* not ready */ }
   }
-  res.json({
-    service: 'fx-bridge-platform-api',
-    mode: SERVICE_MODE,
-    status: 'ok',
-    cloudDemo: isCloudDemo,
-    ledgerConnected,
-    deployTag: '2026-06-05-sync',
-    timestamp: new Date().toISOString(),
-  });
-});
-
-app.get('/', async (_req, res) => {
-  let ledgerConnected = false;
-  try {
-    const { isLedgerAvailable } = await import('./services/fabricLedgerService.js');
-    ledgerConnected = await isLedgerAvailable();
-  } catch { /* not ready */ }
 
   const ledgerLabel = ledgerConnected ? 'Live Ledger' : 'Standby / Demo';
   res.type('html').send(`<!DOCTYPE html>
@@ -123,6 +122,10 @@ app.use((err, _req, res, _next) => {
   res.status(500).json({ ok: false, error: err.message });
 });
 
-app.listen(PORT, process.env.ORCHESTRATOR_HOST || '0.0.0.0', () => {
-  logger.info(`Financial Bridge API listening on :${PORT} [${SERVICE_MODE}]`);
+app.listen(PORT, HOST, () => {
+  logger.info(`Financial Bridge API listening on ${HOST}:${PORT} [${SERVICE_MODE}] cloudDemo=${isCloudDemo}`);
+});
+
+process.on('unhandledRejection', (err) => {
+  logger.error('unhandledRejection', { message: err?.message || String(err) });
 });

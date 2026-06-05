@@ -1,14 +1,15 @@
-# TENDERFLOW API — Render (Docker) + Vercel frontends
+# TENDERFLOW API — Render native Node (recommended) + Vercel frontends
 # https://dashboard.render.com/blueprint/new?repo=https://github.com/Jpeng0109/tenderflow-baas
 
 services:
   - type: web
     name: tenderflow-api
-    runtime: docker
+    runtime: node
     plan: starter
     branch: main
-    dockerfilePath: ./Dockerfile
-    dockerContext: .
+    rootDir: backend
+    buildCommand: npm install --omit=dev --no-optional
+    startCommand: npm start
     healthCheckPath: /health
     envVars:
       - key: NODE_VERSION
